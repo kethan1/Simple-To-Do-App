@@ -19,19 +19,16 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "asar":true
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "simple_to_do_app"
+            "name": "Simple-To-Do-App",
+            "iconUrl": "C:\\Users\\ketha\\Documents\\Kethan\\Simple-To-Do-App\\assets\\to-do-app-icon.ico"
           }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
         },
         {
           "name": "@electron-forge/maker-deb",
