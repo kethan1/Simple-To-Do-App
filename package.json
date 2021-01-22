@@ -21,14 +21,14 @@
     "forge": {
       "packagerConfig": {
         "asar": true,
-        "icon": "C:\\Users\\ketha\\Documents\\Kethan\\Simple-To-Do-App\\assets\\to-do-app-icon.icns"
+        "icon": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/to-do-app-icon.icns"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
             "name": "Simple-To-Do-App",
-            "iconUrl": "C:\\Users\\ketha\\Documents\\Kethan\\Simple-To-Do-App\\assets\\to-do-app-icon.ico"
+            "iconUrl": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/to-do-app-icon.ico"
           }
         },
         {
@@ -48,7 +48,7 @@
             "name": "Simple To Do App",
             "shortName": "SimpleToDoApp",
             "shortcutFolderName": "Simple To Do App",
-            "appIconPath": "C:\\Users\\ketha\\Documents\\Kethan\\Simple-To-Do-App\\assets\\to-do-app-icon.ico"
+            "appIconPath": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/to-do-app-icon.ico"
           }
         },
         {
