@@ -21,15 +21,9 @@
                     function addListInterafacer() {
                         if (document.getElementById("ListTitle") !== "") {
                             var return_value = AddList(document.getElementById("ListTitle").value);
-                            if (return_value == "name_taken") {
-                                M.toast({html: 'List Name Already In Use'})
-                            } else if (return_value == "success") {
-                                location.href="index.html";
-                            }
-                        } else {
-                            M.toast({html: "Please Enter a List Name"})
-                        }
-                        
+                            if (return_value == "name_taken") { M.toast({html: 'List Name Already In Use'}) } 
+                            else if (return_value == "success") { location.href="index.html"; }
+                        } else { M.toast({html: "Please Enter a List Name"}); }
                     }
                 </script>
                 <button onclick="addListInterafacer()" style="z-index: 1;" class="waves-effect waves-light btn 
