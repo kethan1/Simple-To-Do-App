@@ -8,35 +8,42 @@
     text-shadow: 0 0 0 green;
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        color: white;
-        background-color: #1A1B1C;
-        font-family: Comfortaa;
-    }
-    .change-button {
-        color: white !important;
-        background-color: #000000 !important;
-    }
-    input {
-        color: white !important;
-    }
-    .div_border {
-        border: 1px solid #141414
-    }
+html {
+    --global-color: white;
+    --global-color-invert: black;
+    --body-background: white;
+    --global-color3: #EEEEEE;
+    --settings-icon-color: #222222;
 }
 
-@media (prefers-color-scheme: light) {
-    body {
-        color: black;
-        background-color: white;
-        font-family: Comfortaa;
-    }
-    .change-button {
-        color: black;
-        background-color: white;
-    }
-    .div_border {
-        border: 1px solid #141414
-    }
+html[data-theme="dark"] {
+    --global-color: black;
+    --global-color-invert: white;
+    --body-background: #1A1B1C;
+    --global-color3: #121212;
+    --settings-icon-color: #ffffff;
+}
+
+body {
+    color: var(--global-color-invert);
+    background-color: var(--body-background);
+    font-family: Comfortaa;
+}
+
+
+button {
+    color: var(--global-color-invert) !important;
+    background-color: var(--global-color) !important;
+}
+input {
+    color: var(--global-color-invert) !important;
+}
+.change-button {
+    color: var(--global-color);
+    background-color: var(--global-color);
+}
+
+
+.div_background_color {
+    background-color: var(--global-color3);
 }

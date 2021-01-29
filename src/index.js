@@ -1,28 +1,119 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu, dialog, remote } = require('electron');
 const path = require('path');
+const isDev = false ? (app.isPackaged): true;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
-  app.quit();
+    app.quit();
 }
 
 const createWindow = () => {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 600,
-    webPreferences: {
-        enableRemoteModule: true,
-        nodeIntegration: true,
-        contextIsolation: false,
-    },	
-  });
+    // Create the browser window.
+    const mainWindow = new BrowserWindow({
+        width: 1000,
+        height: 600,
+        webPreferences: {
+            enableRemoteModule: true,
+            nodeIntegration: true,
+            contextIsolation: false,
+        },
+    });
 
-  // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+    const isMac = process.platform === 'darwin'
 
-  // Open the DevTools.
-//   mainWindow.webContents.openDevTools();
+    const template = [
+        // { role: 'appMenu' }
+        ...(isMac ? [{
+        label: app.name,
+        submenu: [
+            { role: 'about' },
+            { type: 'separator' },
+            { role: 'services' },
+            { type: 'separator' },
+            { role: 'hide' },
+            { role: 'hideothers' },
+            { role: 'unhide' },
+            { type: 'separator' },
+            { role: 'quit' }
+        ]
+        }] : []),
+        // { role: 'fileMenu' }
+        {
+            label: 'File',
+            submenu: [
+                isMac ? { role: 'close' } : { role: 'quit' }
+            ]
+        },
+        // { role: 'editMenu' }
+        {
+            label: 'Edit',
+            submenu: [
+                { role: 'undo' },
+                { role: 'redo' },
+                { type: 'separator' },
+                { role: 'cut' },
+                { role: 'copy' },
+                { role: 'paste' },
+                ...(isMac ? [
+                { role: 'pasteAndMatchStyle' },
+                { role: 'delete' },
+                { role: 'selectAll' },
+                { type: 'separator' },
+                {
+                    label: 'Speech',
+                    submenu: [
+                    { role: 'startSpeaking' },
+                    { role: 'stopSpeaking' }
+                    ]
+                }
+                ] : [
+                { role: 'delete' },
+                { type: 'separator' },
+                { role: 'selectAll' }
+                ])
+            ]
+        },
+        // { role: 'viewMenu' }
+        {
+            label: 'View',
+            submenu: [
+                { role: 'reload' },
+                isDev ? { role: 'toggleDevTools' }: null,
+                { type: 'separator' },
+                { role: 'resetZoom' },
+                { role: 'zoomIn' },
+                { role: 'zoomOut' },
+                { type: 'separator' },
+                { role: 'togglefullscreen' }
+            ]
+        },
+        // { role: 'windowMenu' }
+        {
+            label: 'Window',
+            submenu: [
+                { role: 'minimize' },
+                { role: 'zoom' },
+                ...(isMac ? [
+                { type: 'separator' },
+                { role: 'front' },
+                { type: 'separator' },
+                ] : [
+                isMac ? { role: 'close' } : { role: 'quit' }
+                ])
+            ]
+        },
+    ]
+
+
+
+    const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
+
+    // and load the index.html of the app.
+    mainWindow.loadFile(path.join(__dirname, 'index.html'));
+
+    // Open the DevTools.
+    // mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

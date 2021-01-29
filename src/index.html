@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head id="head">
         <meta charset="UTF-8">
-        <title>To Do App!</title>
+        <title>To-Do List</title>
         <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
         <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
         <link rel="stylesheet" href="index.css">
         <script src="render.js"></script>
     </head>
     <body>
-        <h4 style="text-align: center;">To Do App</h4>
-        
-        <div class="container">
+        <h4 style="text-align: center;">To-Do List</h4>
+        <div style="text-align: right; margin-right: 3vw;">
+            <a href="settings.html" style="color: var(--settings-icon-color);"><i class="fas fa-cog fa-lg"></i></a>
+        </div>
+
+        <div style="margin-right: 16%; margin-left: 7%">
             <a href="addListPage.html">Add New List</a>
             <div id="to_do_lists" class="content"></div>
         </div>
@@ -29,16 +33,16 @@
                 to_insert_in.innerHTML = `<td>
                     <div class='input-field'>
                         <input id='NewInputName_${event.target.id}' type='text' name='NewInputName' required>
-                        <label for='NewInputName_${event.target.id}'>New Task Name</label>
+                        <label for='NewInputName_${event.target.id}'>Task Name</label>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <button onclick="AddTaskInterfacerP3('${event.target.id}')" class="btn waves-effect 
-waves-light" name="action">Remove Task</button>
+waves-light btn-small" name="action">Remove</button>
                         </div>
-                        <div class="input-field col s6">
+                        <ndiv class="input-field col s6">
                             <button onclick="AddTaskInterfacerP2('${event.target.id}')" class="btn waves-effect 
-waves-light" name="action">Add Task</button>
+waves-light btn-small" name="action">Add</button>
                         </div>
                     </div>
                 </td>`;
@@ -64,18 +68,18 @@ onClick="RemoveItemfromListInterfacer('${key}', '${value[i]}')">❌</a></td></tr
                     }
                     
                     to_do_lists.innerHTML+=`<div style="display: inline-block; vertical-align: top; padding: 
-1.5vw 2.5vw; margin: 2vw; resize: both; overflow: auto; border-radius: 4px; background-color: #121212;" class="div_border">
+1.5vw 2.5vw; margin: 2vw; resize: both; overflow: auto; border-radius: 4px;" class="div_background_color">
                         <table>
                             <thead>
-                                <tr>
-                                    <th>${key} <a style="cursor: pointer;" 
+                                <tr style="border: 0px solid black !important;">
+                                    <th><span style="font-size: 1.75vw">${key}</span><a style="cursor: pointer;" 
 onClick="RemoveListInterfacer('${key}')">❌</a></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ${tmp_string}
-                                <tr id="add_task_input_${key}"></tr>
-                                <tr><td><a id="${key}" onClick="AddTaskInterfacerP1()"></a><span id="${key}" style="cursor: pointer" onClick="AddTaskInterfacerP1()" class="plus_sign_green">➕</span></td></tr>
+                                <tr style="border: 0px solid black !important;" id="add_task_input_${key}"></tr>
+                                <tr style="border: 0px solid black !important;"><td><a id="${key}" onClick="AddTaskInterfacerP1()"></a><span id="${key}" style="cursor: pointer" onClick="AddTaskInterfacerP1()" class="plus_sign_green">➕</span></td></tr>
                             </tbody>
                         </table>
                     </div>`
@@ -84,4 +88,5 @@ onClick="RemoveListInterfacer('${key}')">❌</a></th>
             setToDoLists()
         </script>
     </body>
+    <script src="detectAndChangeTheme.js"></script>
 </html>

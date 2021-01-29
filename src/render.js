@@ -1,5 +1,3 @@
-// const Store = require("electron-store");
-
 var Store = null;
 var store = null;
 
@@ -40,4 +38,8 @@ function RemoveItemfromList(listName, item) {
 
 function DeleteList(listName) {
     get_store().delete(`Simple-To-Do-App.${listName}`)
+}
+
+function SaveDivPosition() {
+    all_divs = document.getElementById("")
 }

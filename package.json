@@ -2,7 +2,7 @@
   "name": "simple-to-do-app",
   "productName": "simple-to-do-app",
   "version": "1.0.0",
-  "description": "This is a Simple-To-Do-App",
+  "description": "This is a Simple To Do App",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -21,14 +21,14 @@
     "forge": {
       "packagerConfig": {
         "asar": true,
-        "icon": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/to-do-app-icon.ico"
+        "icon": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons/app_icon.ico"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
             "name": "Simple-To-Do-App",
-            "iconUrl": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/to-do-app-icon.ico"
+            "iconUrl": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons/app_icon.ico"
           }
         },
         {
@@ -48,12 +48,14 @@
             "name": "Simple To Do App",
             "shortName": "SimpleToDoApp",
             "shortcutFolderName": "Simple To Do App",
-            "appIconPath": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/to-do-app-icon.ico"
+            "appIconPath": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons/app_icon.ico"
           }
         },
         {
           "name": "@electron-forge/maker-deb",
-          "config": {}
+          "config": {
+            "icon": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons/app_icon.png"
+          }
         },
         {
           "name": "@electron-forge/maker-rpm",
@@ -63,6 +65,7 @@
     }
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^6.0.1",
     "materialize-css": "^1.0.0-rc.2"
