@@ -21,7 +21,7 @@
     "forge": {
       "packagerConfig": {
         "asar": true,
-        "icon": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons/app_icon.ico"
+        "icon": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons"
       },
       "makers": [
         {

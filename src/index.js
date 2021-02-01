@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, dialog, remote } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const isDev = false ? (app.isPackaged): true;
 
@@ -12,6 +12,7 @@ const createWindow = () => {
     const mainWindow = new BrowserWindow({
         width: 1000,
         height: 600,
+        icon: "../assets/app_icons/app_icon.png",
         webPreferences: {
             enableRemoteModule: true,
             nodeIntegration: true,
