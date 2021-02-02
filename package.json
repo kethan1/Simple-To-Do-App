@@ -3,6 +3,7 @@
   "productName": "simple-to-do-app",
   "version": "1.0.0",
   "description": "This is a Simple To Do App",
+  "repository": "https://github.com/kethan1/Simple-To-Do-App",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -21,14 +22,14 @@
     "forge": {
       "packagerConfig": {
         "asar": true,
-        "icon": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons"
+        "icon": "/assets/app_icons"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
             "name": "Simple-To-Do-App",
-            "iconUrl": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons/app_icon.ico"
+            "iconUrl": "/app_icons/app_icon.ico"
           }
         },
         {
@@ -48,18 +49,26 @@
             "name": "Simple To Do App",
             "shortName": "SimpleToDoApp",
             "shortcutFolderName": "Simple To Do App",
-            "appIconPath": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons/app_icon.ico"
+            "appIconPath": "/app_icons/app_icon.ico"
           }
         },
         {
           "name": "@electron-forge/maker-deb",
           "config": {
-            "icon": "C:/Users/ketha/Documents/Kethan/Simple-To-Do-App/assets/app_icons/app_icon.png"
+            "maintainer": "Kethan Vegunta",
+			"icon": "/app_icons/app_icon.png",
+			"name": "Simple To Do App"
           }
         },
         {
           "name": "@electron-forge/maker-rpm",
-          "config": {}
+          "config": {
+              "maintainer": "Kethan Vegunta",
+              "homepage": "https://github.com/kethan1/Simple-To-Do-App"
+              "license": "MIT",
+			  "icon": "/app_icons/app_icon.png",
+			  "name": "Simple To Do App"
+          }
         }
       ]
     }
