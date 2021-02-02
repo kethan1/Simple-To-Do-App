@@ -1,9 +1,12 @@
+
 dist: focal
 language: node_js
 node_js:
   - lts/*
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y install dpkg fakeroot rpm-build flatpak flatpak-builder eu-strip
 script:
-  - yarn
   - yarn make --platform linux --arch x64
   - yarn make --platform linux --arch ia32
   - yarn make --platform linux --arch arm64
