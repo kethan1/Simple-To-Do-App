@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = {
     packagerConfig: {
         "asar": true,
-        "icon": path.join(__dirname, "/assets/app_icons")
+        "icon": path.join(__dirname, "/assets/app_icons/app_icon")
     },
     makers: [
         {
