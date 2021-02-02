@@ -38,7 +38,7 @@ module.exports = {
             "config": {
                 "maintainer": "Kethan Vegunta",
                 "icon": path.join(__dirname, "/assets/app_icons/app_icon.png"),
-                "name": "Simple To Do App"
+                "name": "Simple-To-Do-App"
             }
         },
         {
@@ -48,7 +48,7 @@ module.exports = {
                 "homepage": "https://github.com/kethan1/Simple-To-Do-App",
                 "license": "MIT",
                 "icon": path.join(__dirname, "/assets/app_icons/app_icon.png"),
-                "name": "Simple To Do App"
+                "name": "Simple-To-Do-App"
             }
         }
     ]
