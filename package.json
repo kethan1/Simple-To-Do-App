@@ -22,14 +22,14 @@
     "forge": {
       "packagerConfig": {
         "asar": true,
-        "icon": "/assets/app_icons"
+        "icon": "file:./assets/app_icons"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
             "name": "Simple-To-Do-App",
-            "iconUrl": "/app_icons/app_icon.ico"
+            "iconUrl": "file:./app_icons/app_icon.ico"
           }
         },
         {
@@ -49,14 +49,14 @@
             "name": "Simple To Do App",
             "shortName": "SimpleToDoApp",
             "shortcutFolderName": "Simple To Do App",
-            "appIconPath": "/app_icons/app_icon.ico"
+            "appIconPath": "file:./app_icons/app_icon.ico"
           }
         },
         {
           "name": "@electron-forge/maker-deb",
           "config": {
             "maintainer": "Kethan Vegunta",
-			"icon": "/app_icons/app_icon.png",
+			"icon": "file:./app_icons/app_icon.png",
 			"name": "Simple To Do App"
           }
         },
@@ -66,7 +66,7 @@
               "maintainer": "Kethan Vegunta",
               "homepage": "https://github.com/kethan1/Simple-To-Do-App",
               "license": "MIT",
-			  "icon": "/app_icons/app_icon.png",
+			  "icon": "file:./app_icons/app_icon.png",
 			  "name": "Simple To Do App"
           }
         }
