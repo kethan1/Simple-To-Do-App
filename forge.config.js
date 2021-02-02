@@ -10,7 +10,7 @@ module.exports = {
             "name": "@electron-forge/maker-squirrel",
             "config": {
                 "name": "Simple-To-Do-App",
-                "iconUrl": path.join(__dirname, "/app_icons/app_icon.ico")
+                "iconUrl": path.join(__dirname, "/assets/app_icons/app_icon.ico")
             }
         },
         {
@@ -30,14 +30,14 @@ module.exports = {
                 "name": "Simple To Do App",
                 "shortName": "SimpleToDoApp",
                 "shortcutFolderName": "Simple To Do App",
-                "appIconPath": path.join(__dirname, "/app_icons/app_icon.ico")
+                "appIconPath": path.join(__dirname, "/assets/app_icons/app_icon.ico")
             }
         },
         {
             "name": "@electron-forge/maker-deb",
             "config": {
                 "maintainer": "Kethan Vegunta",
-                "icon": path.join(__dirname, "app_icons/app_icon.png"),
+                "icon": path.join(__dirname, "/assets/app_icons/app_icon.png"),
                 "name": "Simple To Do App"
             }
         },
@@ -47,7 +47,7 @@ module.exports = {
                 "maintainer": "Kethan Vegunta",
                 "homepage": "https://github.com/kethan1/Simple-To-Do-App",
                 "license": "MIT",
-                "icon": path.join(__dirname, "app_icons/app_icon.png"),
+                "icon": path.join(__dirname, "/assets/app_icons/app_icon.png"),
                 "name": "Simple To Do App"
             }
         }
