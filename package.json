@@ -19,59 +19,7 @@
   },
   "license": "MIT",
   "config": {
-    "forge": {
-      "packagerConfig": {
-        "asar": true,
-        "icon": "file:./assets/app_icons"
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "Simple-To-Do-App",
-            "iconUrl": "file:./app_icons/app_icon.ico"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin",
-            "win32",
-            "linux"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-wix",
-          "config": {
-            "language": 1033,
-            "manufacturer": "Kethan Vegunta",
-            "description": "Simple To Do App!",
-            "name": "Simple To Do App",
-            "shortName": "SimpleToDoApp",
-            "shortcutFolderName": "Simple To Do App",
-            "appIconPath": "file:./app_icons/app_icon.ico"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {
-            "maintainer": "Kethan Vegunta",
-			"icon": "file:./app_icons/app_icon.png",
-			"name": "Simple To Do App"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {
-              "maintainer": "Kethan Vegunta",
-              "homepage": "https://github.com/kethan1/Simple-To-Do-App",
-              "license": "MIT",
-			  "icon": "file:./app_icons/app_icon.png",
-			  "name": "Simple To Do App"
-          }
-        }
-      ]
-    }
+    "forge": "./forge.config.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
