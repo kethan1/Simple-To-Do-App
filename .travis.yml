@@ -5,13 +5,11 @@ node_js:
   - lts/*
 addons:
   apt:
+    update: true
     packages:
       - dpkg
       - fakeroot
       - rpm-build
-      - flatpack
-      - flatpack-builder
-      - eu-strip
 script:
   - yarn make --platform linux --arch x64
   - yarn make --platform linux --arch ia32
