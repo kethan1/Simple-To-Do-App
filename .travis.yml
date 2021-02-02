@@ -1,16 +1,27 @@
 dist: focal
 language: node_js
 node_js:
-  - lts/*
+- lts/*
 addons:
   apt:
     update: true
     packages:
-      - dpkg
-      - fakeroot
-      - rpm
+    - dpkg
+    - fakeroot
+    - rpm
+    - mono-complete
+    - wine64
 script:
-  - yarn make --platform linux --arch x64
-  - yarn make --platform linux --arch arm64
-  - yarn make --platform darwin --arch x64
-  - yarn make --platform darwin --arch arm64
+- yarn make --platform linux --arch x64
+- yarn make --platform linux --arch arm64
+- yarn make --platform darwin --arch x64
+- yarn make --platform darwin --arch arm64
+deploy:
+  provider: releases
+  api_key: $GithubOauthKey
+  file_glob: true
+  file: out/*
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
