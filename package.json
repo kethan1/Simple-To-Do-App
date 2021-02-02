@@ -64,7 +64,7 @@
           "name": "@electron-forge/maker-rpm",
           "config": {
               "maintainer": "Kethan Vegunta",
-              "homepage": "https://github.com/kethan1/Simple-To-Do-App"
+              "homepage": "https://github.com/kethan1/Simple-To-Do-App",
               "license": "MIT",
 			  "icon": "/app_icons/app_icon.png",
 			  "name": "Simple To Do App"
