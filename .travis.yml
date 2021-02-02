@@ -16,11 +16,11 @@ script:
 - yarn make --platform linux --arch arm64
 - yarn make --platform darwin --arch x64
 - yarn make --platform darwin --arch arm64
+- zip -r make.zip make
 deploy:
   provider: releases
   api_key: $GithubOauthKey
-  file_glob: true
-  file: out/*
+  file: make.zip
   skip_cleanup: true
   on:
     tags: true
