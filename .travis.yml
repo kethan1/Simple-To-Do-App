@@ -11,16 +11,18 @@ addons:
     - rpm
     - mono-complete
     - wine64
+    - zip
+    - unzip
 script:
 - yarn make --platform linux --arch x64
 - yarn make --platform linux --arch arm64
 - yarn make --platform darwin --arch x64
 - yarn make --platform darwin --arch arm64
-- zip -r make.zip . -i make
+- zip -r makeOutput make
 deploy:
   provider: releases
   api_key: $GithubOauthKey
-  file: make.zip
+  file: makeOutput.zip
   skip_cleanup: true
   on:
     tags: true
