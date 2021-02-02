@@ -3,7 +3,8 @@ var path = require('path');
 module.exports = {
     packagerConfig: {
         "asar": true,
-        "icon": path.join(__dirname, "/assets/app_icons/app_icon")
+        "icon": path.join(__dirname, "/assets/app_icons/app_icon"),
+        "executableName": "Simple-To-Do-App"
     },
     makers: [
         {
@@ -38,7 +39,7 @@ module.exports = {
             "config": {
                 "maintainer": "Kethan Vegunta",
                 "icon": path.join(__dirname, "/assets/app_icons/app_icon.png"),
-                "name": "Simple-To-Do-App"
+                "name": "Simple To Do App"
             }
         },
         {
@@ -48,7 +49,7 @@ module.exports = {
                 "homepage": "https://github.com/kethan1/Simple-To-Do-App",
                 "license": "MIT",
                 "icon": path.join(__dirname, "/assets/app_icons/app_icon.png"),
-                "name": "Simple-To-Do-App"
+                "name": "Simple To Do App"
             }
         }
     ]
