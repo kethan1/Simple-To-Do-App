@@ -9,7 +9,7 @@ addons:
     packages:
       - dpkg
       - fakeroot
-      - rpm-build
+      - rpm
 script:
   - yarn make --platform linux --arch x64
   - yarn make --platform linux --arch ia32
