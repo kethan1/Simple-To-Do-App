@@ -38,12 +38,19 @@ button {
 input {
     color: var(--global-color-invert) !important;
 }
+.select-wrapper .caret {
+    fill: var(--global-color-invert);
+}
+.dropdown-content li span,
+.select-wrapper input.select-dropdown {  
+    color: var(--global-color);   
+}
 .change-button {
     color: var(--global-color);
     background-color: var(--global-color);
 }
-
-
 .div_background_color {
     background-color: var(--global-color3);
 }
+
+
