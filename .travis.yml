@@ -18,11 +18,13 @@ script:
 - yarn make --platform linux --arch arm64
 - yarn make --platform darwin --arch x64
 - yarn make --platform darwin --arch arm64
-- zip -r makeOutput make
+- pwd
+- ls
+- zip -r makeZipped.zip make
 deploy:
   provider: releases
   api_key: $GithubOauthKey
-  file: makeOutput.zip
+  file: makeZipped.zip
   skip_cleanup: true
   on:
     tags: true
