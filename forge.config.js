@@ -23,6 +23,13 @@ module.exports = {
             ]
         },
         {
+            "name": "@electron-forge/maker-dmg",
+            "config": {
+                "background": './assets/dmg-background.png',
+                "format": "ULFO"
+            }
+        },
+        {
             "name": "@electron-forge/maker-wix",
             "config": {
                 "language": 1033,
