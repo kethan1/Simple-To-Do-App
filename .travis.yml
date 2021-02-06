@@ -1,8 +1,8 @@
 os:
 - linux
-dist: focal
 - osx
 - windows
+dist: focal
 language: node_js
 node_js:
 - lts/*
