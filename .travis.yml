@@ -1,4 +1,6 @@
-dist: focal
+os:
+- linux
+- osx
 language: node_js
 node_js:
 - lts/*
@@ -15,16 +17,16 @@ addons:
     - zip
     - unzip
 script:
-- if [ "$TRAVIS_OS_NAME" = "linux" ]; yarn make --platform linux --arch x64
-- if [ "$TRAVIS_OS_NAME" = "linux" ]; yarn make --platform linux --arch arm64
-- if [ "$TRAVIS_OS_NAME" = "osx" ]; yarn make --platform darwin --arch x64
-- if [ "$TRAVIS_OS_NAME" = "osx" ]; yarn make --platform darwin --arch arm64
+- if [ "$TRAVIS_OS_NAME" = "linux" ]; yarn make --platform linux --arch x64;
+- if [ "$TRAVIS_OS_NAME" = "linux" ]; yarn make --platform linux --arch arm64;
+- if [ "$TRAVIS_OS_NAME" = "osx" ]; yarn make --platform darwin --arch x64;
+- if [ "$TRAVIS_OS_NAME" = "osx" ]; yarn make --platform darwin --arch arm64;
 - |-
     case $TRAVIS_OS_NAME in
       windows)
-      yarn make --platform win32 --arch x64
-      yarn make --platform win32 --arch ia32
-      yarn make --platform win32 --arch arm64
+      yarn make --platform win32 --arch x64;
+      yarn make --platform win32 --arch ia32;
+      yarn make --platform win32 --arch arm64;
 - cd out
 - zip -r makeZipped.zip make
 deploy:
