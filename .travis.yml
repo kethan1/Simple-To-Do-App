@@ -21,6 +21,8 @@ before_install:
       windows)
         powershell Install-WindowsFeature Net-Framework-Core
         choco install -y wixtoolset
+        export PATH=$PATH:"/c/Program Files (x86)/WiX Toolset v3.11/bin"
+        refreshenv
         ;;
     esac
 script:
