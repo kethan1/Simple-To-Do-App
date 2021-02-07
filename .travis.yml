@@ -53,48 +53,15 @@ script:
 - if ["$TRAVIS_OS_NAME" = "osx"]; then mv "makeZipped-mac.zip" "../"; fi
 - if ["$TRAVIS_OS_NAME" = "linux"]; then mv "makeZipped-linux.zip" "../"; fi
 - cd ../
-jobs:
-  include:
-    - stage: add MacOS build to release
-      os: osx
-      deploy:
-        provider: releases
-        api_key: $GithubOauthKey
-        draft: true
-        skip_cleanup: true
-        file: makeZipped-mac.zip
-        on:
-          tags: true
-          all_branches: true
-    - stage: add Windows build to release
-      os: windows
-      deploy:
-        provider: releases
-        api_key: $GithubOauthKey
-        draft: true
-        skip_cleanup: true
-        file: makeZipped-win.zip
-        on:
-          tags: true
-          all_branches: true
-    - stage: add Linux build to release and publish release to Github Releases
-      os: linux
-      dist: focal
-      deploy:
-        provider: releases
-        api_key: $GithubOauthKey
-        draft: false
-        skip_cleanup: true
-        file: makeZipped-linux.zip
-        on:
-          tags: true
-          all_branches: true
 
-# deploy:
-#   provider: releases
-#   api_key: $GithubOauthKey
-#   file: makeZipped.zip
-#   skip_cleanup: true
-#   on:
-#     tags: true
-#     all_branches: true
+deploy:
+  provider: releases
+  api_key: $GithubOauthKey
+  file: 
+    - "makeZipped-win.zip"
+    - "makeZipped-mac.zip"
+    - "makeZipped-linux.zip"
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
