@@ -45,7 +45,7 @@ script:
 - |-
     case $TRAVIS_OS_NAME in
       windows)
-        move "makeZipped-win.zip" "../"
+        powershell "move \"makeZipped-win.zip\" \"../\""
         ;;
     esac
 - if ["$TRAVIS_OS_NAME" = "osx"]; then zip -r makeZipped-mac.zip make; fi
