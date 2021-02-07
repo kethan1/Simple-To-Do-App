@@ -8,14 +8,6 @@ module.exports = {
     },
     makers: [
         {
-            "name": "@electron-forge/maker-squirrel",
-            "config": {
-                "name": "Simple-To-Do-App",
-                "exe": "Simple-To-Do-App",
-                "iconUrl": path.join(__dirname, "/assets/app_icons/app_icon.ico")
-            }
-        },
-        {
             "name": "@electron-forge/maker-zip",
             "platforms": [
                 "darwin",
