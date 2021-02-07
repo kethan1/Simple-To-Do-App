@@ -52,6 +52,7 @@ script:
 - if ["$TRAVIS_OS_NAME" = "linux"]; then zip -r makeZipped-linux.zip make; fi
 - if ["$TRAVIS_OS_NAME" = "osx"]; then mv "makeZipped-mac.zip" "../"; fi
 - if ["$TRAVIS_OS_NAME" = "linux"]; then mv "makeZipped-linux.zip" "../"; fi
+- cd ../
 jobs:
   include:
     - stage: add MacOS build to release
