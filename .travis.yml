@@ -39,7 +39,9 @@ script:
       windows)
         powershell "Compress-Archive make makeZipped.zip"
         ;;
+    esac
 - if ["$TRAVIS_OS_NAME" = "osx"]; then zip -r makeZipped.zip make; fi
+- if ["$TRAVIS_OS_NAME" = "linux"]; then zip -r makeZipped.zip make; fi
 deploy:
   provider: releases
   api_key: $GithubOauthKey
