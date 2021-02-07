@@ -40,10 +40,17 @@ script:
     case $TRAVIS_OS_NAME in
       windows)
         powershell "Compress-Archive make makeZipped-win.zip"
+        move "makeZipped-win.zip" "../"
         ;;
     esac
-- if ["$TRAVIS_OS_NAME" = "osx"]; then zip -r makeZipped-mac.zip make; fi
-- if ["$TRAVIS_OS_NAME" = "linux"]; then zip -r makeZipped-linux.zip make; fi
+- if ["$TRAVIS_OS_NAME" = "osx"]; then 
+    zip -r makeZipped-mac.zip make; 
+    mv "makeZipped-mac.zip" "../"
+  fi
+- if ["$TRAVIS_OS_NAME" = "linux"]; then 
+    zip -r makeZipped-linux.zip make; 
+    mv "makeZipped-linux.zip" "../"
+  fi
 jobs:
   include:
     - stage: add MacOS build to release
