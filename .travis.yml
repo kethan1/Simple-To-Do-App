@@ -39,16 +39,50 @@ script:
 - |-
     case $TRAVIS_OS_NAME in
       windows)
-        powershell "Compress-Archive make makeZipped.zip"
+        powershell "Compress-Archive make makeZipped-win.zip"
         ;;
     esac
-- if ["$TRAVIS_OS_NAME" = "osx"]; then zip -r makeZipped.zip make; fi
-- if ["$TRAVIS_OS_NAME" = "linux"]; then zip -r makeZipped.zip make; fi
-deploy:
-  provider: releases
-  api_key: $GithubOauthKey
-  file: makeZipped.zip
-  skip_cleanup: true
-  on:
-    tags: true
-    all_branches: true
+- if ["$TRAVIS_OS_NAME" = "osx"]; then zip -r makeZipped-mac.zip make; fi
+- if ["$TRAVIS_OS_NAME" = "linux"]; then zip -r makeZipped-linux.zip make; fi
+jobs:
+  include:
+    - stage: upload macos assets
+      os: osx
+      deploy:
+        provider: releases
+        api_key: $GithubOauthKey
+        draft: true
+        skip_cleanup: true
+        file: makeZipped-mac.zip
+        on:
+          all_branches: true
+    - stage: publish linux assets
+      os: windows
+      deploy:
+        provider: releases
+        api_key: $GithubOauthKey
+        draft: false
+        skip_cleanup: true
+        file: makeZipped-win.zip
+        on:
+          all_branches: true
+    - stage: publish linux assets
+      os: linux
+      dist: focal
+      deploy:
+        provider: releases
+        api_key: $GithubOauthKey
+        draft: false
+        skip_cleanup: true
+        file: makeZipped-linux.zip
+        on:
+          all_branches: true
+
+# deploy:
+#   provider: releases
+#   api_key: $GithubOauthKey
+#   file: makeZipped.zip
+#   skip_cleanup: true
+#   on:
+#     tags: true
+#     all_branches: true

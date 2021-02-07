@@ -4,7 +4,7 @@ module.exports = {
     packagerConfig: {
         "asar": true,
         "icon": path.join(__dirname, "/assets/app_icons/app_icon"),
-        "executableName": "simple-to-do-app"
+        "executableName": "Simple To Do App",
     },
     makers: [
         {
@@ -31,6 +31,7 @@ module.exports = {
                 "name": "Simple To Do App",
                 "shortName": "SimpleToDoApp",
                 "shortcutFolderName": "Simple To Do App",
+                "programFilesFolderName": "Simple-To-Do-App",
                 "appIconPath": path.join(__dirname, "/assets/app_icons/app_icon.ico")
             }
         },
