@@ -56,12 +56,12 @@ jobs:
         file: makeZipped-mac.zip
         on:
           all_branches: true
-    - stage: publish linux assets
+    - stage: publish windows assets
       os: windows
       deploy:
         provider: releases
         api_key: $GithubOauthKey
-        draft: false
+        draft: true
         skip_cleanup: true
         file: makeZipped-win.zip
         on:

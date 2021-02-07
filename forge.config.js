@@ -1,10 +1,17 @@
 var path = require('path');
+var process = require('process');
+
+if (process.platform == "win32") {
+    var executableNameVar = "Simple To Do App"
+} else {
+    var executableNameVar = "simple-to-do-app"
+}
 
 module.exports = {
     packagerConfig: {
         "asar": true,
         "icon": path.join(__dirname, "/assets/app_icons/app_icon"),
-        "executableName": "Simple To Do App",
+        "executableName": executableNameVar,
     },
     makers: [
         {
