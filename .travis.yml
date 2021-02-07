@@ -21,7 +21,12 @@ addons:
 script:
 - yarn make --arch x64;
 - yarn make --arch arm64;
-- if [ "$TRAVIS_OS_NAME" == "windows" ]; then yarn make --platform win32 --arch ia32; done
+- |-
+    case $TRAVIS_OS_NAME in
+      windows)
+        yarn make --platform win32 --arch ia32
+        ;;
+    esac
 - cd out
 - zip -r makeZipped.zip make
 deploy:
