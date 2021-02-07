@@ -46,7 +46,7 @@ script:
 - if ["$TRAVIS_OS_NAME" = "linux"]; then zip -r makeZipped-linux.zip make; fi
 jobs:
   include:
-    - stage: upload macos assets
+    - stage: add MacOS build to release
       os: osx
       deploy:
         provider: releases
@@ -56,7 +56,7 @@ jobs:
         file: makeZipped-mac.zip
         on:
           all_branches: true
-    - stage: publish windows assets
+    - stage: add Windows build to release
       os: windows
       deploy:
         provider: releases
@@ -66,7 +66,7 @@ jobs:
         file: makeZipped-win.zip
         on:
           all_branches: true
-    - stage: publish linux assets
+    - stage: add Linux build to release and publish release to Github Releases
       os: linux
       dist: focal
       deploy:

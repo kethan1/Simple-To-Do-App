@@ -1,8 +1,8 @@
 # Simple-To-Do-App
 
-Hi, this is a Simple To Do App I built with [electron][2] (specifically [electron-forge][1] template). 
+Hi, this is a Simple To Do App I built with [electron][2] ([electron-forge][1] template). 
 
-To Run:
+To Run Code:
 
 Make sure you have Node.js, npm and yarn (recommended, but not required) installed. 
 
