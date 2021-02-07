@@ -55,6 +55,7 @@ jobs:
         skip_cleanup: true
         file: makeZipped-mac.zip
         on:
+          tags: true
           all_branches: true
     - stage: add Windows build to release
       os: windows
@@ -65,6 +66,7 @@ jobs:
         skip_cleanup: true
         file: makeZipped-win.zip
         on:
+          tags: true
           all_branches: true
     - stage: add Linux build to release and publish release to Github Releases
       os: linux
@@ -76,6 +78,7 @@ jobs:
         skip_cleanup: true
         file: makeZipped-linux.zip
         on:
+          tags: true
           all_branches: true
 
 # deploy:
