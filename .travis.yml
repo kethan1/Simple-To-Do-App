@@ -19,21 +19,9 @@ addons:
     - zip
     - unzip
 script:
-- if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      yarn make --platform linux --arch x64;
-- if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      yarn make --platform linux --arch arm64;
-- if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      yarn make --platform darwin --arch x64;
-- if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      yarn make --platform darwin --arch arm64;
-- |-
-    case $TRAVIS_OS_NAME in
-      windows)
-      yarn make --platform win32 --arch x64
-      yarn make --platform win32 --arch ia32
-      yarn make --platform win32 --arch arm64
-      ;;
+- yarn make --arch x64;
+- yarn make --arch arm64;
+- if [ "$TRAVIS_OS_NAME" == "windows" ]; then yarn make --platform win32 --arch ia32; done
 - cd out
 - zip -r makeZipped.zip make
 deploy:
