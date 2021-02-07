@@ -34,7 +34,12 @@ script:
         ;;
     esac
 - cd out
-- zip -r makeZipped.zip make
+- |-
+    case $TRAVIS_OS_NAME in
+      windows)
+        powershell "Compress-Archive make makeZipped.zip"
+        ;;
+- if ["$TRAVIS_OS_NAME" = "osx"]; then zip -r makeZipped.zip make; fi
 deploy:
   provider: releases
   api_key: $GithubOauthKey
