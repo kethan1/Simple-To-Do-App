@@ -13,11 +13,16 @@ addons:
     - dpkg
     - fakeroot
     - rpm
-    - mono-complete
-    - wine64
-    - winetricks
     - zip
     - unzip
+before_install:
+- |-
+    case $TRAVIS_OS_NAME in
+      windows)
+        powershell Install-WindowsFeature Net-Framework-Core
+        choco install -y wixtoolset
+        ;;
+    esac
 script:
 - yarn make --arch x64;
 - yarn make --arch arm64;

@@ -11,6 +11,7 @@ module.exports = {
             "name": "@electron-forge/maker-squirrel",
             "config": {
                 "name": "Simple-To-Do-App",
+                "exe": "Simple-To-Do-App",
                 "iconUrl": path.join(__dirname, "/assets/app_icons/app_icon.ico")
             }
         },
