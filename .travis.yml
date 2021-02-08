@@ -50,8 +50,8 @@ script:
     esac
 - if ["$TRAVIS_OS_NAME" = "osx"]; then zip -r makeZipped-mac.zip make; fi
 - if ["$TRAVIS_OS_NAME" = "linux"]; then zip -r makeZipped-linux.zip make; fi
-- if ["$TRAVIS_OS_NAME" = "osx"]; then mv "makeZipped-mac.zip" "../"; fi
-- if ["$TRAVIS_OS_NAME" = "linux"]; then mv "makeZipped-linux.zip" "../"; fi
+- if ["$TRAVIS_OS_NAME" = "osx"]; then /bin/mv "makeZipped-mac.zip" "../"; fi
+- if ["$TRAVIS_OS_NAME" = "linux"]; then /bin/mv "makeZipped-linux.zip" "../"; fi
 - cd ../
 
 deploy:
