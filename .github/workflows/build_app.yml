@@ -31,7 +31,7 @@ jobs:
               echo "Installing Windows Dependencies"
               powershell Install-WindowsFeature Net-Framework-Core
               choco install -y wixtoolset
-              export PATH=$PATH:"/c/Program Files (x86)/WiX Toolset v3.11/bin"
+              echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
          fi
       - name: Install Yarn Dependencies 
         shell: bash
