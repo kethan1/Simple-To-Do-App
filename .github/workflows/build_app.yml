@@ -37,4 +37,3 @@ jobs:
          if [ "$RUNNER_OS" == "Windows" ]; then
           yarn make --arch x86
          fi
-      - shell: bash
