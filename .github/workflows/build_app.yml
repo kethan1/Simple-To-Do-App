@@ -1,4 +1,4 @@
-name: Node Build App For All Oses
+name: Node Build App For Windows (x64, x86, arm64), Linux (x64, arm64), MacOS (x64, arm64)
 
 on: push
 
@@ -20,19 +20,19 @@ jobs:
       - name: Build
         shell: bash
         run: |
-         if [ "$RUNNER_OS" == "Linux" ]; then
+            if [ "$RUNNER_OS" == "Linux" ]; then
               echo "Installing Linux Dependencies"
               sudo apt-get install dpkg
               sudo apt-get install fakeroot
               sudo apt-get install rpm
               sudo apt-get install zip
               sudo apt-get install unzip
-         elif [ "$RUNNER_OS" == "Windows" ]; then
+            elif [ "$RUNNER_OS" == "Windows" ]; then
               echo "Installing Windows Dependencies"
               powershell Install-WindowsFeature Net-Framework-Core
               choco install -y wixtoolset
               echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
-         fi
+            fi
       - name: Install Yarn Dependencies 
         shell: bash
         run: yarn install --frozen-lockfile
@@ -44,6 +44,6 @@ jobs:
       - name: Make x86 for Windows
         shell: bash
         run: |
-         if [ "$RUNNER_OS" == "Windows" ]; then
-              yarn make --arch x86
-         fi
+            if [ "$RUNNER_OS" == "Windows" ]; then
+              yarn make --arch ia32
+            fi
