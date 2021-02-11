@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node_version }}
-      - run:   |
+      - run: |
          if [ "$RUNNER_OS" == "Linux" ]; then
               echo "Installing Linux Dependencies"
               apt install dpkg
@@ -33,7 +33,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn make
       - run: yarn make --arch arm64
-      - |
+      - run: |
          if [ "$RUNNER_OS" == "Windows" ]; then
           yarn make --arch x86
          fi
