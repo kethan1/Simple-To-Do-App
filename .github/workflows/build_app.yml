@@ -33,9 +33,10 @@ jobs:
               choco install -y wixtoolset
               export PATH=$PATH:"/c/Program Files (x86)/WiX Toolset v3.11/bin"
          fi
-        run: yarn install --frozen-lockfile
-        run: yarn make
-        run: yarn make --arch arm64
+        run: |
+            yarn install --frozen-lockfile
+            yarn make
+            yarn make --arch arm64
         run: |
          if [ "$RUNNER_OS" == "Windows" ]; then
               yarn make --arch x86
