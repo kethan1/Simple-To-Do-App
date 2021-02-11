@@ -42,6 +42,7 @@ jobs:
             yarn make
             yarn make --arch arm64
       - name: Make x86 for Windows
+        shell: bash
         run: |
          if [ "$RUNNER_OS" == "Windows" ]; then
               yarn make --arch x86
