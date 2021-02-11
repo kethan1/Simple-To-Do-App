@@ -20,7 +20,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node_version }}
-      - run: |
+      - shell: bash
+      run: |
          if [ "$RUNNER_OS" == "Linux" ]; then
               echo "Installing Linux Dependencies"
               sudo apt-get install dpkg
@@ -34,11 +35,10 @@ jobs:
               choco install -y wixtoolset
               export PATH=$PATH:"/c/Program Files (x86)/WiX Toolset v3.11/bin"
          fi
-      - run: yarn install --frozen-lockfile
-      - run: yarn make
-      - run: yarn make --arch arm64
-      - run: |
+      run: yarn install --frozen-lockfile
+      run: yarn make
+      run: yarn make --arch arm64
+      run: |
          if [ "$RUNNER_OS" == "Windows" ]; then
               yarn make --arch x86
          fi
-      - shell: bash
