@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: "14.x"
       - name: Build
-      - shell: bash
+      shell: bash
         run: |
          if [ "$RUNNER_OS" == "Linux" ]; then
               echo "Installing Linux Dependencies"
