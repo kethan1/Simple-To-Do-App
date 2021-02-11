@@ -1,3 +1,7 @@
+name: Node Build App For All Oses
+
+on: push
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -35,5 +39,5 @@ jobs:
       - run: yarn make --arch arm64
       - run: |
          if [ "$RUNNER_OS" == "Windows" ]; then
-          yarn make --arch x86
+              yarn make --arch x86
          fi
