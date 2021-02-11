@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node_version }}
-      - shell: bash
       run: |
          if [ "$RUNNER_OS" == "Linux" ]; then
               echo "Installing Linux Dependencies"
