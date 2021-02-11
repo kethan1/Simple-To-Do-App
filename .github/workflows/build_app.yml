@@ -23,11 +23,11 @@ jobs:
       - run: |
          if [ "$RUNNER_OS" == "Linux" ]; then
               echo "Installing Linux Dependencies"
-              apt install dpkg
-              apt install fakeroot
-              apt install rpm
-              apt install zip
-              apt install unzip
+              sudo apt-get install dpkg
+              sudo apt-get install fakeroot
+              sudo apt-get install rpm
+              sudo apt-get install zip
+              sudo apt-get install unzip
          elif [ "$RUNNER_OS" == "Windows" ]; then
               echo "Installing Windows Dependencies"
               powershell Install-WindowsFeature Net-Framework-Core
