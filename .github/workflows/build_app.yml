@@ -69,9 +69,9 @@ jobs:
 
               pwd
               ls
-              powershell "rename arm64/simple-to-do-app.msi simple-to-do-app-arm64.msi"
-              powershell "rename ia32/simple-to-do-app.msi simple-to-do-app-ia32.msi"
-              powershell "rename x64/simple-to-do-app.msi simple-to-do-app-x64.msi"
+              powershell "Rename-Item -Path arm64/simple-to-do-app.msi -NewName simple-to-do-app-arm64.msi"
+              powershell "Rename-Item -Path ia32/simple-to-do-app.msi -NewName simple-to-do-app-ia32.msi"
+              powershell "Rename-Item -Path x64/simple-to-do-app.msi -NewName simple-to-do-app-x64.msi"
               mv arm64/simple-to-do-app.msi ../../../Build-Artifacts
               mv ia32/simple-to-do-app.msi ../../../Build-Artifacts
               mv x64/simple-to-do-app.msi ../../../Build-Artifacts
