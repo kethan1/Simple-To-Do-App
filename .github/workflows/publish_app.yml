@@ -46,7 +46,7 @@ jobs:
             fi
       - name: Install Yarn Dependencies 
         shell: bash
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --network-timeout 100000
       - name: Make x64 and arm64 Windows Linux and MacOS
         shell: bash
         run: | 
