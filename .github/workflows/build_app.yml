@@ -48,6 +48,6 @@ jobs:
               yarn make --arch ia32
             fi
       - name: get file structure
-      - run: |
+        run: |
             cd out/make
             ls -R
