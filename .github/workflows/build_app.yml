@@ -62,11 +62,11 @@ jobs:
             if [ "$RUNNER_OS" == "Windows" ]; then
               cd out
               ls
-              cd out/make
+              cd make
               ls
-              cd out/make/wix/
+              cd wix/
               ls
-              cd out/make/wix/arm64
+              cd arm64
               ls
 
               pwd
