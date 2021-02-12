@@ -47,3 +47,7 @@ jobs:
             if [ "$RUNNER_OS" == "Windows" ]; then
               yarn make --arch ia32
             fi
+      - name: get file structure
+      - run: |
+            cd out/make
+            ls -R
