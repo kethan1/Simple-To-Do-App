@@ -61,6 +61,7 @@ jobs:
             mkdir Build-Artifacts
             if [ "$RUNNER_OS" == "Windows" ]; then
               pwd
+              ls
               mv out/make/wix/arm64/simple-to-do-app.msi simple-to-do-app-arm64.msi
               mv out/make/wix/ia32/simple-to-do-app.msi simple-to-do-app-ia32.msi
               mv out/make/wix/x64/simple-to-do-app.msi simple-to-do-app-x64.msi
