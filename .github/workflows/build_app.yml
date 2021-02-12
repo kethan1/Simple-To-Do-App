@@ -24,7 +24,6 @@ jobs:
               sudo sysctl -w net.link.generic.system.hwcksum_tx=0
               sudo sysctl -w net.link.generic.system.hwcksum_rx=0
             fi
-            
       - name: Install Dependencies
         shell: bash
         run: |
@@ -43,7 +42,7 @@ jobs:
             fi
       - name: Install Yarn Dependencies 
         shell: bash
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --network-timeout 100000
       - name: Make x64 and arm64 Windows Linux and MacOS
         shell: bash
         run: | 
@@ -56,6 +55,11 @@ jobs:
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
               sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/Simple To Do App-1.0.0-arm64.dmg"
+            fi
+            if [ "$RUNNER_OS" == "macOS" ]; then
+              cd out/make/rpm
+              ls
+              cd ../../../
             fi
       - name: Make x86 for Windows
         shell: bash
