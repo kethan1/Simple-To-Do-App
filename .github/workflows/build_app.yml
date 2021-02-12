@@ -48,6 +48,7 @@ jobs:
               yarn make --arch ia32
             fi
       - name: Move Files
+        shell: bash
         run: |
             mkdir Build-Artifacts
             if [ "$RUNNER_OS" == "Windows" ]; then
