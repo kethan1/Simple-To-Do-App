@@ -1,0 +1,137 @@
+name: Node Publish App For Windows (x64, x86, arm64), Linux (x64, arm64), MacOS (x64, arm64)
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-10.15
+          - windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+      - name: MacOS Fix Network Flakiness
+        shell: bash
+        run: |
+            if [ "$RUNNER_OS" == "macOS" ]; then
+              sudo sysctl -w net.link.generic.system.hwcksum_tx=0
+              sudo sysctl -w net.link.generic.system.hwcksum_rx=0
+            fi
+            
+      - name: Install Dependencies
+        shell: bash
+        run: |
+            if [ "$RUNNER_OS" == "Linux" ]; then
+              echo "Installing Linux Dependencies"
+              sudo apt-get install dpkg
+              sudo apt-get install fakeroot
+              sudo apt-get install rpm
+              sudo apt-get install zip
+              sudo apt-get install unzip
+            elif [ "$RUNNER_OS" == "Windows" ]; then
+              echo "Installing Windows Dependencies"
+              powershell Install-WindowsFeature Net-Framework-Core
+              choco install -y wixtoolset
+              echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
+            fi
+      - name: Install Yarn Dependencies 
+        shell: bash
+        run: yarn install --frozen-lockfile
+      - name: Make x64 and arm64 Windows Linux and MacOS
+        shell: bash
+        run: | 
+            yarn make
+            if [ "$RUNNER_OS" == "macOS" ]; then
+              echo "Renaming DMG"
+              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/Simple To Do App-1.0.0-x64.dmg"
+            fi
+            yarn make --arch arm64
+            if [ "$RUNNER_OS" == "macOS" ]; then
+              echo "Renaming DMG"
+              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/Simple To Do App-1.0.0-arm64.dmg"
+            fi
+      - name: Make x86 for Windows
+        shell: bash
+        run: |
+            if [ "$RUNNER_OS" == "Windows" ]; then
+              yarn make --arch ia32
+            fi
+      - name: Move Files
+        shell: bash
+        run: |
+            mkdir Build-Artifacts
+            if [ "$RUNNER_OS" == "Windows" ]; then
+              cd out/make/wix/
+              powershell "Rename-Item -Path arm64/simple-to-do-app.msi -NewName simple-to-do-app-arm64.msi"
+              powershell "Rename-Item -Path ia32/simple-to-do-app.msi -NewName simple-to-do-app-ia32.msi"
+              powershell "Rename-Item -Path x64/simple-to-do-app.msi -NewName simple-to-do-app-x64.msi"
+              powershell "Move-Item -Path arm64/simple-to-do-app-arm64.msi -Destination ../../../Build-Artifacts"
+              powershell "Move-Item -Path ia32/simple-to-do-app-ia32.msi -Destination ../../../Build-Artifacts"
+              powershell "Move-Item -Path x64/simple-to-do-app-x64.msi -Destination ../../../Build-Artifacts"
+              cd ../../../
+            elif [ "$RUNNER_OS" == "Linux" ]; then
+              mv out/make/deb/x64/simple-to-do-app_1.0.0_amd64.deb Build-Artifacts
+              mv out/make/rpm/x64/simple-to-do-app-1.0.0-1.amd64.rpm Build-Artifacts
+              mv out/make/deb/arm64/simple-to-do-app_1.0.0_arm64.deb Build-Artifacts
+              mv out/make/rpm/arm64/simple-to-do-app-1.0.0-1.arm64.rpm Build-Artifacts
+            else
+              sudo mv "out/make/Simple To Do App-1.0.0-x64.dmg" Build-Artifacts
+              sudo mv "out/make/Simple To Do App-1.0.0-arm64.dmg" Build-Artifacts
+              sudo mv "out/make/zip/darwin/arm64/Simple To Do App-darwin-arm64-1.0.0.zip" Build-Artifacts
+              sudo mv "out/make/zip/darwin/x64/Simple To Do App-darwin-x64-1.0.0.zip" Build-Artifacts
+            fi
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Simple To Do App Windows x64 Installer
+          path: |
+              Build-Artifacts/simple-to-do-app-x64.msi
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Simple To Do App Windows x86 Installer
+          path: |
+              Build-Artifacts/simple-to-do-app-ia32.msi
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Simple To Do App Windows arm64 Installer
+          path: |
+              Build-Artifacts/simple-to-do-app-arm64.msi
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Simple To Do App deb x64 Installer
+          path: |
+              Build-Artifacts/simple-to-do-app_1.0.0_amd64.deb
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Simple To Do App deb arm64 Installer
+          path: |
+              Build-Artifacts/simple-to-do-app_1.0.0_arm64.deb
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Simple To Do App rpm x64 Installer
+          path: |
+              simple-to-do-app-1.0.0-1.amd64.rpm
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Simple To Do App rpm arm64 Installer
+          path: |
+              Build-Artifacts/simple-to-do-app-1.0.0-1.arm64.rpm
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Simple To Do App MacOS x64 Installer
+          path: |
+              Build-Artifacts/Simple To Do App-1.0.0-x64.dmg
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Simple To Do App MacOS arm64 Installer
+          path: |
+              Build-Artifacts/Simple To Do App-1.0.0-arm64.dmg
