@@ -17,6 +17,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "14.x"
+      - name: MacOS Fix Network Flakiness
+        shell: bash
+        run: |
+            if [ "$RUNNER_OS" == "macOS" ]; then
+              sudo sysctl -w net.link.generic.system.hwcksum_tx=0
+              sudo sysctl -w net.link.generic.system.hwcksum_rx=0
+            fi
+            
       - name: Build
         shell: bash
         run: |
@@ -58,7 +66,7 @@ jobs:
               move out\make\wix\arm64\simple-to-do-app.msi ../../../Build-Artifacts
               move out\make\wix\ia32\simple-to-do-app.msi ../../../Build-Artifacts
               move out\make\wix\x64\simple-to-do-app.msi ../../../Build-Artifacts
-            elif [ "$RUNNER_OS" == "Windows" ]; then
+            elif [ "$RUNNER_OS" == "Linux" ]; then
               mv out/make/deb/x64/simple-to-do-app_1.0.0_amd64.deb ../../../Build-Artifacts
               mv out/make/rpm/x64/simple-to-do-app-1.0.0-1.x86_64.rpm ../../../Build-Artifacts
               mv out/make/deb/arm64/simple-to-do-app_1.0.0_arm64.deb ../../../Build-Artifacts
