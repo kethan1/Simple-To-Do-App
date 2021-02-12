@@ -74,9 +74,9 @@ jobs:
               mv out/make/deb/arm64/simple-to-do-app_1.0.0_arm64.deb ../../../Build-Artifacts
               mv out/make/rpm/arm64/simple-to-do-app-1.0.0-1.arm64.rpm ../../../Build-Artifacts
             else
-              mv out/make/Simple To Do App-1.0.0.dmg ../../Build-Artifacts
-              mv out/make/zip/darwin/arm64/Simple To Do App-darwin-arm64-1.0.0.zip ../../../../../Build-Artifacts
-              mv out/make/zip/darwin/x64/Simple To Do App-darwin-x64-1.0.0.zip ../../../../../Build-Artifacts
+              mv "out/make/Simple To Do App-1.0.0.dmg" ../../Build-Artifacts
+              mv "out/make/zip/darwin/arm64/Simple To Do App-darwin-arm64-1.0.0.zip" ../../../../../Build-Artifacts
+              mv "out/make/zip/darwin/x64/Simple To Do App-darwin-x64-1.0.0.zip" ../../../../../Build-Artifacts
             fi
       - uses: actions/upload-artifact@v2
         with:
