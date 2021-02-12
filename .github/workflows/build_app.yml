@@ -60,6 +60,15 @@ jobs:
         run: |
             mkdir Build-Artifacts
             if [ "$RUNNER_OS" == "Windows" ]; then
+              cd out
+              ls
+              cd out/make
+              ls
+              cd out/make/wix/
+              ls
+              cd out/make/wix/arm64
+              ls
+
               pwd
               ls
               mv out/make/wix/arm64/simple-to-do-app.msi simple-to-do-app-arm64.msi
