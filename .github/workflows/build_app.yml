@@ -72,9 +72,9 @@ jobs:
               powershell "Rename-Item -Path arm64/simple-to-do-app.msi -NewName simple-to-do-app-arm64.msi"
               powershell "Rename-Item -Path ia32/simple-to-do-app.msi -NewName simple-to-do-app-ia32.msi"
               powershell "Rename-Item -Path x64/simple-to-do-app.msi -NewName simple-to-do-app-x64.msi"
-              mv arm64/simple-to-do-app.msi ../../../Build-Artifacts
-              mv ia32/simple-to-do-app.msi ../../../Build-Artifacts
-              mv x64/simple-to-do-app.msi ../../../Build-Artifacts
+              powershell "Move-Item -Path arm64/simple-to-do-app-arm64.msi -Destination ../../../Build-Artifacts"
+              powershell "Move-Item -Path ia32/simple-to-do-app-ia32.msi -Destination ../../../Build-Artifacts"
+              powershell "Move-Item -Path x64/simple-to-do-app-x64.msi -Destination ../../../Build-Artifacts"
             elif [ "$RUNNER_OS" == "Linux" ]; then
               mv out/make/deb/x64/simple-to-do-app_1.0.0_amd64.deb ../../../Build-Artifacts
               mv out/make/rpm/x64/simple-to-do-app-1.0.0-1.x86_64.rpm ../../../Build-Artifacts
