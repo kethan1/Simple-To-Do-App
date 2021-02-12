@@ -60,9 +60,9 @@ jobs:
         run: |
             mkdir Build-Artifacts
             if [ "$RUNNER_OS" == "Windows" ]; then
-              rename out\make\wix\arm64\simple-to-do-app.msi simple-to-do-app-arm64.msi
-              rename out\make\wix\ia32\simple-to-do-app.msi simple-to-do-app-ia32.msi
-              rename out\make\wix\x64\simple-to-do-app.msi simple-to-do-app-x64.msi
+              move out\make\wix\arm64\simple-to-do-app.msi simple-to-do-app-arm64.msi
+              move out\make\wix\ia32\simple-to-do-app.msi simple-to-do-app-ia32.msi
+              move out\make\wix\x64\simple-to-do-app.msi simple-to-do-app-x64.msi
               move out\make\wix\arm64\simple-to-do-app.msi ../../../Build-Artifacts
               move out\make\wix\ia32\simple-to-do-app.msi ../../../Build-Artifacts
               move out\make\wix\x64\simple-to-do-app.msi ../../../Build-Artifacts
