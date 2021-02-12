@@ -57,7 +57,9 @@ jobs:
               sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/Simple To Do App-1.0.0-arm64.dmg"
             fi
             if [ "$RUNNER_OS" == "Linux" ]; then
-              cd out/make/rpm
+              cd out/make/rpm/x64
+              ls
+              cd ../arm64
               ls
               cd ../../../
             fi
