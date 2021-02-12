@@ -81,7 +81,7 @@ jobs:
               cd ../../../
             elif [ "$RUNNER_OS" == "Linux" ]; then
               mv out/make/deb/x64/simple-to-do-app_1.0.0_amd64.deb Build-Artifacts
-              mv out/make/rpm/x64/simple-to-do-app-1.0.0-1.amd64.rpm Build-Artifacts
+              mv out/make/rpm/x64/simple-to-do-app-1.0.0-1.x86_64.rpm Build-Artifacts
               mv out/make/deb/arm64/simple-to-do-app_1.0.0_arm64.deb Build-Artifacts
               mv out/make/rpm/arm64/simple-to-do-app-1.0.0-1.arm64.rpm Build-Artifacts
             else
@@ -124,7 +124,7 @@ jobs:
         with:
           name: Simple To Do App rpm arm64 Installer
           path: |
-              Build-Artifacts/simple-to-do-app-1.0.0-1.arm64.rpm
+              Build-Artifacts/simple-to-do-app-1.0.0-1.x86_64.rpm
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App MacOS x64 Installer
