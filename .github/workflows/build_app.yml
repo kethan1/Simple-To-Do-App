@@ -56,7 +56,7 @@ jobs:
               echo "Renaming DMG"
               sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/Simple To Do App-1.0.0-arm64.dmg"
             fi
-            if [ "$RUNNER_OS" == "macOS" ]; then
+            if [ "$RUNNER_OS" == "Linux" ]; then
               cd out/make/rpm
               ls
               cd ../../../
