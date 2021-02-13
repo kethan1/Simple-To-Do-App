@@ -135,10 +135,11 @@ jobs:
           name: Simple To Do App MacOS arm64 Installer
           path: |
               Build-Artifacts/Simple To Do App-1.0.0-arm64.dmg
-      - uses: meeDamian/github-release@2.0
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: >
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
                 Build-Artifacts/simple-to-do-app-x64.msi
                 Build-Artifacts/simple-to-do-app-ia32.msi
                 Build-Artifacts/simple-to-do-app-arm64.msi
