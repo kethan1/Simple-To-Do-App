@@ -85,6 +85,9 @@ jobs:
               mv out/make/deb/arm64/simple-to-do-app_1.0.0_arm64.deb Build-Artifacts
               mv out/make/rpm/arm64/simple-to-do-app-1.0.0-1.arm64.rpm Build-Artifacts
             else
+              cd out/make
+              ls
+              cd ../../
               sudo mv "out/make/simple-do-do-app-1.0.0-x64.dmg" Build-Artifacts
               sudo mv "out/make/simple-do-do-app-1.0.0-arm64.dmg" Build-Artifacts
               sudo mv "out/make/zip/darwin/arm64/simple-do-do-app-darwin-arm64-1.0.0.zip" Build-Artifacts
