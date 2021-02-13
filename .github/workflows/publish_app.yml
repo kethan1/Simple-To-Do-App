@@ -136,9 +136,9 @@ jobs:
           path: |
               Build-Artifacts/Simple To Do App-1.0.0-arm64.dmg
       - name: Upload release binaries
-        uses: alexellis/upload-assets@0.2.2
+        uses: alexellis/upload-assets@0.2.3
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           asset_paths: '["./Build-Artifacts/*"]'
       # - uses: "marvinpinto/action-automatic-releases@latest"
