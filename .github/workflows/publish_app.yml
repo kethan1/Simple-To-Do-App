@@ -135,17 +135,23 @@ jobs:
           name: Simple To Do App MacOS arm64 Installer
           path: |
               Build-Artifacts/Simple To Do App-1.0.0-arm64.dmg
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Upload release binaries
+        uses: alexellis/upload-assets@0.2.2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          files: |
-                Build-Artifacts/simple-to-do-app-x64.msi
-                Build-Artifacts/simple-to-do-app-ia32.msi
-                Build-Artifacts/simple-to-do-app-arm64.msi
-                Build-Artifacts/simple-to-do-app_1.0.0_amd64.deb
-                Build-Artifacts/simple-to-do-app_1.0.0_arm64.deb
-                Build-Artifacts/simple-to-do-app-1.0.0-1.x86_64.rpm
-                Build-Artifacts/simple-to-do-app-1.0.0-1.arm64.rpm
-                Build-Artifacts/Simple To Do App-1.0.0-x64.dmg
-                Build-Artifacts/Simple To Do App-1.0.0-arm64.dmg
+          asset_paths: '["./Build-Artifacts/*"]'
+      # - uses: "marvinpinto/action-automatic-releases@latest"
+      #   with:
+      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
+      #     prerelease: false
+      #     files: |
+      #           Build-Artifacts/simple-to-do-app-x64.msi
+      #           Build-Artifacts/simple-to-do-app-ia32.msi
+      #           Build-Artifacts/simple-to-do-app-arm64.msi
+      #           Build-Artifacts/simple-to-do-app_1.0.0_amd64.deb
+      #           Build-Artifacts/simple-to-do-app_1.0.0_arm64.deb
+      #           Build-Artifacts/simple-to-do-app-1.0.0-1.x86_64.rpm
+      #           Build-Artifacts/simple-to-do-app-1.0.0-1.arm64.rpm
+      #           Build-Artifacts/Simple To Do App-1.0.0-x64.dmg
+      #           Build-Artifacts/Simple To Do App-1.0.0-arm64.dmg
