@@ -44,9 +44,12 @@ jobs:
               choco install -y wixtoolset
               echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
             fi
+
       - name: Install Yarn Dependencies 
         shell: bash
+
         run: yarn install --frozen-lockfile --network-timeout 100000
+        
       - name: Make x64 and arm64 Windows Linux and MacOS
         shell: bash
         run: | 
