@@ -49,7 +49,7 @@ jobs:
         shell: bash
 
         run: yarn install --frozen-lockfile --network-timeout 100000
-        
+
       - name: Make x64 and arm64 Windows Linux and MacOS
         shell: bash
         run: | 
@@ -138,9 +138,14 @@ jobs:
           name: Simple To Do App MacOS arm64 Installer
           path: |
               Build-Artifacts/Simple To Do App-1.0.0-arm64.dmg
-      - uses: actions/upload-artifact@v2
-        with:
-          path: Build-Artifacts/*
+        - name: Upload binaries to release
+          uses: svenstaro/upload-release-action@v2
+          with:
+            repo_token: ${{ secrets.GITHUB_TOKEN }}
+            file: Build-Artifacts/*
+            tag: ${{ github.ref }}
+            overwrite: true
+            file_glob: true
       # - uses: "marvinpinto/action-automatic-releases@latest"
       #   with:
       #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
