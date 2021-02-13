@@ -87,11 +87,11 @@ jobs:
             else
               cd out/make
               ls
+              sudo mv simple-do-do-app-1.0.0-x64.dmg ../../Build-Artifacts
+              sudo mv simple-do-do-app-1.0.0-arm64.dmg ../../Build-Artifacts
+              sudo mv zip/darwin/arm64/simple-do-do-app-darwin-arm64-1.0.0.zip ../../Build-Artifacts
+              sudo mv zip/darwin/x64/simple-do-do-app-darwin-x64-1.0.0.zip ../../Build-Artifacts
               cd ../../
-              sudo mv "out/make/simple-do-do-app-1.0.0-x64.dmg" Build-Artifacts
-              sudo mv "out/make/simple-do-do-app-1.0.0-arm64.dmg" Build-Artifacts
-              sudo mv "out/make/zip/darwin/arm64/simple-do-do-app-darwin-arm64-1.0.0.zip" Build-Artifacts
-              sudo mv "out/make/zip/darwin/x64/simple-do-do-app-darwin-x64-1.0.0.zip" Build-Artifacts
             fi
       - uses: actions/upload-artifact@v2
         with:
