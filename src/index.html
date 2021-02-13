@@ -56,7 +56,7 @@ waves-light btn-small" name="action">Add</button>
                 to_insert_in.innerHTML = "";
             }
             function setToDoLists() {
-                to_do_lists = document.getElementById("to_do_lists");
+                var to_do_lists = document.getElementById("to_do_lists");
                 to_do_lists.innerHTML = "";
                 for (var [key, value] of Object.entries(GetLists())) {
                     var tmp_string = "";
