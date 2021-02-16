@@ -56,12 +56,12 @@ jobs:
             yarn make
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
-              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/Simple To Do App-1.0.0-x64.dmg"
+              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/simple-to-do-app-1.0.0-x64.dmg"
             fi
             yarn make --arch arm64
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
-              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/Simple To Do App-1.0.0-arm64.dmg"
+              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/simple-to-do-app-1.0.0-arm64.dmg"
             fi
       - name: Make x86 for Windows
         shell: bash
@@ -78,20 +78,19 @@ jobs:
               powershell "Rename-Item -Path arm64/simple-to-do-app.msi -NewName simple-to-do-app-arm64.msi"
               powershell "Rename-Item -Path ia32/simple-to-do-app.msi -NewName simple-to-do-app-ia32.msi"
               powershell "Rename-Item -Path x64/simple-to-do-app.msi -NewName simple-to-do-app-x64.msi"
-              powershell "Move-Item -Path arm64/simple-to-do-app-arm64.msi -Destination ../../../Build-Artifacts"
-              powershell "Move-Item -Path ia32/simple-to-do-app-ia32.msi -Destination ../../../Build-Artifacts"
-              powershell "Move-Item -Path x64/simple-to-do-app-x64.msi -Destination ../../../Build-Artifacts"
+              powershell "Move-Item -Path arm64/* -Destination ../../../Build-Artifacts"
+              powershell "Move-Item -Path ia32/* -Destination ../../../Build-Artifacts"
+              powershell "Move-Item -Path x64/* -Destination ../../../Build-Artifacts"
               cd ../../../
             elif [ "$RUNNER_OS" == "Linux" ]; then
-              mv out/make/deb/x64/simple-to-do-app_1.0.0_amd64.deb Build-Artifacts
-              mv out/make/rpm/x64/simple-to-do-app-1.0.0-1.x86_64.rpm Build-Artifacts
-              mv out/make/deb/arm64/simple-to-do-app_1.0.0_arm64.deb Build-Artifacts
-              mv out/make/rpm/arm64/simple-to-do-app-1.0.0-1.arm64.rpm Build-Artifacts
+              mv out/make/deb/x64/* Build-Artifacts
+              mv out/make/rpm/x64/* Build-Artifacts
+              mv out/make/deb/arm64/* Build-Artifacts
+              mv out/make/rpm/arm64/* Build-Artifacts
             else
-              sudo mv "out/make/Simple To Do App-1.0.0-x64.dmg" Build-Artifacts
-              sudo mv "out/make/Simple To Do App-1.0.0-arm64.dmg" Build-Artifacts
-              sudo mv "out/make/zip/darwin/arm64/Simple To Do App-darwin-arm64-1.0.0.zip" Build-Artifacts
-              sudo mv "out/make/zip/darwin/x64/Simple To Do App-darwin-x64-1.0.0.zip" Build-Artifacts
+              sudo mv "out/make/*.dmg" Build-Artifacts
+              sudo mv "out/make/zip/darwin/arm64/*" Build-Artifacts
+              sudo mv "out/make/zip/darwin/x64/*" Build-Artifacts
             fi
       - uses: actions/upload-artifact@v2
         with:
@@ -132,12 +131,12 @@ jobs:
         with:
           name: Simple To Do App MacOS x64 Installer
           path: |
-              Build-Artifacts/Simple To Do App-1.0.0-x64.dmg
+              Build-Artifacts/simple-to-do-app-1.0.0-x64.dmg
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App MacOS arm64 Installer
           path: |
-              Build-Artifacts/Simple To Do App-1.0.0-arm64.dmg
+              Build-Artifacts/simple-to-do-app-1.0.0-arm64.dmg
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:

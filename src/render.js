@@ -41,5 +41,5 @@ function DeleteList(listName) {
 }
 
 function SaveDivPosition() {
-    all_divs = document.getElementById("")
+    var all_divs = document.getElementById("")
 }

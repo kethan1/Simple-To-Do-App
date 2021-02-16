@@ -2,6 +2,13 @@
 
 Hi, this is a Simple To Do App I built with [electron][2] ([electron-forge][1] template). 
 
+## How to Run
+
+### Production Builds
+These can be found in Github Releases, link here: https://github.com/kethan1/Simple-To-Do-App/releases/latest.
+
+### Running Dev
+
 To Run Code:
 
 Make sure you have Node.js, npm and yarn (recommended, but not required) installed. 
