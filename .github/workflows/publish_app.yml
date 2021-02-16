@@ -88,6 +88,9 @@ jobs:
               mv out/make/deb/arm64/* Build-Artifacts
               mv out/make/rpm/arm64/* Build-Artifacts
             else
+              cd out/make
+              ls -R
+              cd ../../
               sudo mv "out/make/*.dmg" Build-Artifacts
               sudo mv "out/make/zip/darwin/arm64/*" Build-Artifacts
               sudo mv "out/make/zip/darwin/x64/*" Build-Artifacts
