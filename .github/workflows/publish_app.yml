@@ -56,12 +56,12 @@ jobs:
             yarn make
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
-              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/simple-to-do-app-1.0.0-x64.dmg"
+              sudo mv "out/make/*.dmg" "out/make/simple-to-do-app-x64.dmg"
             fi
             yarn make --arch arm64
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
-              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/simple-to-do-app-1.0.0-arm64.dmg"
+              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/simple-to-do-app-arm64.dmg"
             fi
       - name: Make x86 for Windows
         shell: bash
@@ -91,9 +91,10 @@ jobs:
               cd out/make
               ls -R
               cd ../../
-              sudo mv "out/make/*.dmg" Build-Artifacts
-              sudo mv "out/make/zip/darwin/arm64/*" Build-Artifacts
-              sudo mv "out/make/zip/darwin/x64/*" Build-Artifacts
+              sudo mv "./out/make/simple-to-do-app-x64.dmg" ./Build-Artifacts
+              sudo mv "./out/make/simple-to-do-app-arm64.dmg" ./Build-Artifacts
+              sudo mv "./out/make/zip/darwin/arm64/*" ./Build-Artifacts
+              sudo mv "./out/make/zip/darwin/x64/*" ./Build-Artifacts
             fi
       - uses: actions/upload-artifact@v2
         with:
