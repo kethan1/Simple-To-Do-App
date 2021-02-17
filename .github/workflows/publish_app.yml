@@ -56,7 +56,7 @@ jobs:
             yarn make
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
-              sudo bash -c "mv \"out/make/*.dmg\" \"out/make/simple-to-do-app-x64.dmg\""
+              sudo bash -c "mv \"out/make/\"*\"".dmg\" \"out/make/simple-to-do-app-x64.dmg\""
             fi
             yarn make --arch arm64
             if [ "$RUNNER_OS" == "macOS" ]; then
