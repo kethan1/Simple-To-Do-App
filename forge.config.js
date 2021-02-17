@@ -51,5 +51,17 @@ module.exports = {
                 "icon": path.join(__dirname, "/assets/app_icons/app_icon.png")
             }
         }
+    ],
+    publishers: [
+        {
+            name: '@electron-forge/publisher-github',
+            config: {
+              repository: {
+                owner: 'me',
+                name: 'awesome-thing'
+              },
+              prerelease: true
+            }
+        }
     ]
 }

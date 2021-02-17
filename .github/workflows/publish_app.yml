@@ -56,12 +56,12 @@ jobs:
             yarn make
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
-              sudo mv "out/make/*.dmg" "out/make/simple-to-do-app-x64.dmg"
+              sudo bash -c "mv \"out/make/*.dmg\" \"out/make/simple-to-do-app-x64.dmg\""
             fi
             yarn make --arch arm64
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
-              sudo mv "out/make/Simple To Do App-1.0.0.dmg" "out/make/simple-to-do-app-arm64.dmg"
+              sudo bash -c "mv \"out/make/Simple To Do App-*.dmg\" \"out/make/simple-to-do-app-arm64.dmg\""
             fi
       - name: Make x86 for Windows
         shell: bash
