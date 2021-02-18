@@ -56,12 +56,18 @@ jobs:
             yarn make
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
-              sudo mv out/make/*.dmg out/make/simple-to-do-app-x64.dmg
+              sudo zsh -c "noglob zmv -W out/make/*.dmg out/make/simple-to-do-app-x64.dmg"
             fi
             yarn make --arch arm64
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming DMG"
-              sudo bash -c "mv \"out/make/Simple To Do App-*.dmg\" \"out/make/simple-to-do-app-arm64.dmg\""
+              sudo zsh -c "noglob zmv -W out/make/Simple To Do App-*.dmg out/make/simple-to-do-app-arm64.dmg"
+            elif [ "$RUNNER_OS" == "Linux" ]; then
+              blahbalh
+              mv out/make/simple-to-do-app_*_amd64.deb out/make/simple-to-do-app_x64.deb 
+              mv out/make/simple-to-do-app_*_arm64.deb out/make/simple-to-do-app_arm64.deb 
+              mv out/make/simple-to-do-app-*-1.x86_64.rpm out/make/simple-to-do-app-x64.rpm
+              mv out/make/simple-to-do-app-*-1.arm64.rpm out/make/simple-to-do-app-arm64.rpm 
             fi
       - name: Make x86 for Windows
         shell: bash
@@ -88,9 +94,6 @@ jobs:
               mv out/make/deb/arm64/* Build-Artifacts
               mv out/make/rpm/arm64/* Build-Artifacts
             else
-              cd out/make
-              ls -R
-              cd ../../
               sudo mv "./out/make/simple-to-do-app-x64.dmg" ./Build-Artifacts
               sudo mv "./out/make/simple-to-do-app-arm64.dmg" ./Build-Artifacts
               sudo mv "./out/make/zip/darwin/arm64/*" ./Build-Artifacts
@@ -115,22 +118,22 @@ jobs:
         with:
           name: Simple To Do App deb x64 Installer
           path: |
-              Build-Artifacts/simple-to-do-app_1.0.0_amd64.deb
+              Build-Artifacts/simple-to-do-app_x64.deb
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App deb arm64 Installer
           path: |
-              Build-Artifacts/simple-to-do-app_1.0.0_arm64.deb
+              Build-Artifacts/simple-to-do-app_arm64.deb
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App rpm x64 Installer
           path: |
-              Build-Artifacts/simple-to-do-app-1.0.0-1.x86_64.rpm
+              Build-Artifacts/simple-to-do-app-x64.rpm
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App rpm arm64 Installer
           path: |
-              Build-Artifacts/simple-to-do-app-1.0.0-1.arm64.rpm
+              Build-Artifacts/simple-to-do-app-arm64.rpm
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App MacOS x64 Installer
