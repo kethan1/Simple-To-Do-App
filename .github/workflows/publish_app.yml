@@ -55,13 +55,21 @@ jobs:
         run: | 
             yarn make
             if [ "$RUNNER_OS" == "macOS" ]; then
-              echo "Renaming DMG"
-              sudo zsh -c "noglob zmv -W out/make/*.dmg out/make/simple-to-do-app-x64.dmg"
+              echo "Renaming x64 DMG"
+              for nam in out/make/*.dmg
+              do
+                  newname=${out/make/simple-to-do-app-x64.dmg}
+                  mv $nam $newname
+              done
             fi
             yarn make --arch arm64
             if [ "$RUNNER_OS" == "macOS" ]; then
-              echo "Renaming DMG"
-              sudo zsh -c "noglob zmv -W out/make/Simple To Do App-*.dmg out/make/simple-to-do-app-arm64.dmg"
+              echo "Renaming arm64 DMG"
+              for nam in out/make/Simple To Do App-*.dmg
+              do
+                  newname=${out/make/simple-to-do-app-arm64.dmg}
+                  mv $nam $newname
+              done
             elif [ "$RUNNER_OS" == "Linux" ]; then
               blahbalh
               mv out/make/simple-to-do-app_*_amd64.deb out/make/simple-to-do-app_x64.deb 
