@@ -56,7 +56,7 @@ jobs:
             yarn make
             if [ "$RUNNER_OS" == "macOS" ]; then
               echo "Renaming x64 DMG"
-              for nam in *.dmg; do mv $nam out/make/simple-to-do-app-x64.dmg ; done
+              for nam in out/make/*.dmg; do echo $nam && mv $nam out/make/simple-to-do-app-x64.dmg ; done
             fi
             yarn make --arch arm64
             if [ "$RUNNER_OS" == "macOS" ]; then
