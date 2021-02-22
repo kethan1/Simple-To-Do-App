@@ -43,14 +43,12 @@ jobs:
       - name: Install Yarn Dependencies 
         shell: bash
         run: yarn install --frozen-lockfile --network-timeout 100000
-      - name: Make x64 and arm64 Windows Linux and MacOS
+      - name: Make x64, x86, and arm64 for Windows, Linux, and MacOS
         shell: bash
         run: | 
             yarn make
             yarn make --arch arm64
-      - name: Make x86 for Windows
-        shell: bash
-        run: |
             if [ "$RUNNER_OS" == "Windows" ]; then
               yarn make --arch ia32
             fi
+            
