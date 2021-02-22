@@ -85,6 +85,6 @@ jobs:
           path: |
               out/make/win32/ia32/simple-to-do-app.msi
       - name: Run Electron-Forge Publish
-        run: yarn publish
+        run: yarn publishToTag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
