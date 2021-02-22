@@ -145,6 +145,8 @@ jobs:
           name: Simple To Do App MacOS arm64 Installer
           path: |
               Build-Artifacts/simple-to-do-app-1.0.0-arm64.dmg
+      - name: Run Electron-Forge Publish
+        run: yarn publish
       # - name: Upload binaries to release
       #   uses: svenstaro/upload-release-action@v2
       #   with:
