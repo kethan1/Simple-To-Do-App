@@ -57,8 +57,9 @@ module.exports = {
             "name": '@electron-forge/publisher-github',
             "config": {
               "repository": {
-                "owner": 'kethan1',
-                "name": 'Simple-To-Do-App'
+                "owner": "kethan1",
+                "name": "Simple-To-Do-App",
+                "draft": true
               }
             }
         }
