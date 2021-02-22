@@ -43,6 +43,8 @@ jobs:
               powershell Install-WindowsFeature Net-Framework-Core
               choco install -y wixtoolset
               echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
+            elif [ "$RUNNER_OS" == "macOS" ]; then
+              brew install rename
             fi
 
       - name: Install Yarn Dependencies 
@@ -54,50 +56,50 @@ jobs:
         shell: bash
         run: | 
             yarn make
-            if [ "$RUNNER_OS" == "macOS" ]; then
-              echo "Renaming x64 DMG"
-              for nam in out/make/*.dmg; do echo $nam && echo mv $nam out/make/simple-to-do-app-x64.dmg && mv $nam out/make/simple-to-do-app-x64.dmg ; done
-            fi
+            # if [ "$RUNNER_OS" == "macOS" ]; then
+            #   echo "Renaming x64 DMG"
+            #   for nam in out/make/*.dmg; do echo $nam && echo mv $nam out/make/simple-to-do-app-x64.dmg && mv $nam out/make/simple-to-do-app-x64.dmg ; done
+            # fi
             yarn make --arch arm64
-            if [ "$RUNNER_OS" == "macOS" ]; then
-              echo "Renaming arm64 DMG"
-              for nam in out/make/Simple To Do App-*.dmg; do mv $nam out/make/simple-to-do-app-arm64.dmg ; done
-            elif [ "$RUNNER_OS" == "Linux" ]; then
-              for nam in out/make/simple-to-do-app_*_amd64.deb; do mv $nam out/make/simple-to-do-app_x64.deb  ; done
-              for nam in out/make/simple-to-do-app_*_arm64.deb; do mv $nam out/make/simple-to-do-app_arm64.deb ; done
-              for nam in out/make/simple-to-do-app-*-1.x86_64.rpm; do mv $nam out/make/simple-to-do-app-x64.rpm ; done
-              for nam in out/make/simple-to-do-app-*-1.arm64.rpm; do mv $nam out/make/simple-to-do-app-arm64.rpm ; done  
-            fi
+            # if [ "$RUNNER_OS" == "macOS" ]; then
+            #   echo "Renaming arm64 DMG"
+            #   for nam in out/make/Simple To Do App-*.dmg; do mv $nam out/make/simple-to-do-app-arm64.dmg ; done
+            # elif [ "$RUNNER_OS" == "Linux" ]; then
+            #   for nam in out/make/simple-to-do-app_*_amd64.deb; do mv $nam out/make/simple-to-do-app_x64.deb  ; done
+            #   for nam in out/make/simple-to-do-app_*_arm64.deb; do mv $nam out/make/simple-to-do-app_arm64.deb ; done
+            #   for nam in out/make/simple-to-do-app-*-1.x86_64.rpm; do mv $nam out/make/simple-to-do-app-x64.rpm ; done
+            #   for nam in out/make/simple-to-do-app-*-1.arm64.rpm; do mv $nam out/make/simple-to-do-app-arm64.rpm ; done  
+            # fi
       - name: Make x86 for Windows
         shell: bash
         run: |
             if [ "$RUNNER_OS" == "Windows" ]; then
               yarn make --arch ia32
             fi
-      - name: Move Files
-        shell: bash
-        run: |
-            mkdir Build-Artifacts
-            if [ "$RUNNER_OS" == "Windows" ]; then
-              cd out/make/wix/
-              powershell "Rename-Item -Path arm64/simple-to-do-app.msi -NewName simple-to-do-app-arm64.msi"
-              powershell "Rename-Item -Path ia32/simple-to-do-app.msi -NewName simple-to-do-app-ia32.msi"
-              powershell "Rename-Item -Path x64/simple-to-do-app.msi -NewName simple-to-do-app-x64.msi"
-              powershell "Move-Item -Path arm64/simple-to-do-app-arm64.msi -Destination ../../../Build-Artifacts"
-              powershell "Move-Item -Path ia32/simple-to-do-app-ia32.msi -Destination ../../../Build-Artifacts"
-              powershell "Move-Item -Path x64/simple-to-do-app-x64.msi -Destination ../../../Build-Artifacts"
-              cd ../../../
-            elif [ "$RUNNER_OS" == "Linux" ]; then
-              mv out/make/deb/x64/* Build-Artifacts
-              mv out/make/rpm/x64/* Build-Artifacts
-              mv out/make/deb/arm64/* Build-Artifacts
-              mv out/make/rpm/arm64/* Build-Artifacts
-            else
-              sudo mv "./out/make/simple-to-do-app-x64.dmg" ./Build-Artifacts
-              sudo mv "./out/make/simple-to-do-app-arm64.dmg" ./Build-Artifacts
-              sudo mv "./out/make/zip/darwin/arm64/*" ./Build-Artifacts
-              sudo mv "./out/make/zip/darwin/x64/*" ./Build-Artifacts
-            fi
+      # - name: Move Files
+      #   shell: bash
+      #   run: |
+      #       mkdir Build-Artifacts
+      #       if [ "$RUNNER_OS" == "Windows" ]; then
+      #         cd out/make/wix/
+      #         powershell "Rename-Item -Path arm64/simple-to-do-app.msi -NewName simple-to-do-app-arm64.msi"
+      #         powershell "Rename-Item -Path ia32/simple-to-do-app.msi -NewName simple-to-do-app-ia32.msi"
+      #         powershell "Rename-Item -Path x64/simple-to-do-app.msi -NewName simple-to-do-app-x64.msi"
+      #         powershell "Move-Item -Path arm64/simple-to-do-app-arm64.msi -Destination ../../../Build-Artifacts"
+      #         powershell "Move-Item -Path ia32/simple-to-do-app-ia32.msi -Destination ../../../Build-Artifacts"
+      #         powershell "Move-Item -Path x64/simple-to-do-app-x64.msi -Destination ../../../Build-Artifacts"
+      #         cd ../../../
+      #       elif [ "$RUNNER_OS" == "Linux" ]; then
+      #         mv out/make/deb/x64/* Build-Artifacts
+      #         mv out/make/rpm/x64/* Build-Artifacts
+      #         mv out/make/deb/arm64/* Build-Artifacts
+      #         mv out/make/rpm/arm64/* Build-Artifacts
+      #       else
+      #         sudo mv "./out/make/simple-to-do-app-x64.dmg" ./Build-Artifacts
+      #         sudo mv "./out/make/simple-to-do-app-arm64.dmg" ./Build-Artifacts
+      #         sudo mv "./out/make/zip/darwin/arm64/*" ./Build-Artifacts
+      #         sudo mv "./out/make/zip/darwin/x64/*" ./Build-Artifacts
+      #       fi
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App Windows x64 Installer
@@ -143,14 +145,14 @@ jobs:
           name: Simple To Do App MacOS arm64 Installer
           path: |
               Build-Artifacts/simple-to-do-app-1.0.0-arm64.dmg
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: Build-Artifacts/*
-          tag: ${{ github.ref }}
-          overwrite: true
-          file_glob: true
+      # - name: Upload binaries to release
+      #   uses: svenstaro/upload-release-action@v2
+      #   with:
+      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
+      #     file: Build-Artifacts/*
+      #     tag: ${{ github.ref }}
+      #     overwrite: true
+      #     file_glob: true
       # - uses: "marvinpinto/action-automatic-releases@latest"
       #   with:
       #     repo_token: "${{ secrets.GITHUB_TOKEN }}"

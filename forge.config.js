@@ -54,13 +54,13 @@ module.exports = {
     ],
     publishers: [
         {
-            name: '@electron-forge/publisher-github',
-            config: {
-              repository: {
-                owner: 'me',
-                name: 'awesome-thing'
-              },
-              prerelease: true
+            "name": '@electron-forge/publisher-github',
+            "authToken": process.env["secrets.GITHUB_TOKEN"],
+            "config": {
+              "repository": {
+                "owner": 'kethan1',
+                "name": 'Simple-To-Do-App'
+              }
             }
         }
     ]
