@@ -55,7 +55,6 @@ module.exports = {
     publishers: [
         {
             "name": '@electron-forge/publisher-github',
-            "authToken": process.env["secrets.GITHUB_TOKEN"],
             "config": {
               "repository": {
                 "owner": 'kethan1',

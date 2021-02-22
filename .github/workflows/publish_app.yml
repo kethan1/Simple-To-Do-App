@@ -104,49 +104,16 @@ jobs:
         with:
           name: Simple To Do App Windows x64 Installer
           path: |
-              Build-Artifacts/simple-to-do-app-x64.msi
+              out/make/win32/x64/simple-to-do-app.msi
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App Windows x86 Installer
           path: |
-              Build-Artifacts/simple-to-do-app-ia32.msi
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Simple To Do App Windows arm64 Installer
-          path: |
-              Build-Artifacts/simple-to-do-app-arm64.msi
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Simple To Do App deb x64 Installer
-          path: |
-              Build-Artifacts/simple-to-do-app_x64.deb
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Simple To Do App deb arm64 Installer
-          path: |
-              Build-Artifacts/simple-to-do-app_arm64.deb
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Simple To Do App rpm x64 Installer
-          path: |
-              Build-Artifacts/simple-to-do-app-x64.rpm
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Simple To Do App rpm arm64 Installer
-          path: |
-              Build-Artifacts/simple-to-do-app-arm64.rpm
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Simple To Do App MacOS x64 Installer
-          path: |
-              Build-Artifacts/simple-to-do-app-1.0.0-x64.dmg
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Simple To Do App MacOS arm64 Installer
-          path: |
-              Build-Artifacts/simple-to-do-app-1.0.0-arm64.dmg
+              out/make/win32/ia32/simple-to-do-app.msi
       - name: Run Electron-Forge Publish
         run: yarn publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: Upload binaries to release
       #   uses: svenstaro/upload-release-action@v2
       #   with:
