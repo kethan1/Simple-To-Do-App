@@ -74,33 +74,6 @@ jobs:
             #   for nam in out/make/simple-to-do-app-*-1.x86_64.rpm; do mv $nam out/make/simple-to-do-app-x64.rpm ; done
             #   for nam in out/make/simple-to-do-app-*-1.arm64.rpm; do mv $nam out/make/simple-to-do-app-arm64.rpm ; done  
             # fi
-      - name: Make x86 for Windows
-        shell: bash
-        run: |
-      # - name: Move Files
-      #   shell: bash
-      #   run: |
-      #       mkdir Build-Artifacts
-      #       if [ "$RUNNER_OS" == "Windows" ]; then
-      #         cd out/make/wix/
-      #         powershell "Rename-Item -Path arm64/simple-to-do-app.msi -NewName simple-to-do-app-arm64.msi"
-      #         powershell "Rename-Item -Path ia32/simple-to-do-app.msi -NewName simple-to-do-app-ia32.msi"
-      #         powershell "Rename-Item -Path x64/simple-to-do-app.msi -NewName simple-to-do-app-x64.msi"
-      #         powershell "Move-Item -Path arm64/simple-to-do-app-arm64.msi -Destination ../../../Build-Artifacts"
-      #         powershell "Move-Item -Path ia32/simple-to-do-app-ia32.msi -Destination ../../../Build-Artifacts"
-      #         powershell "Move-Item -Path x64/simple-to-do-app-x64.msi -Destination ../../../Build-Artifacts"
-      #         cd ../../../
-      #       elif [ "$RUNNER_OS" == "Linux" ]; then
-      #         mv out/make/deb/x64/* Build-Artifacts
-      #         mv out/make/rpm/x64/* Build-Artifacts
-      #         mv out/make/deb/arm64/* Build-Artifacts
-      #         mv out/make/rpm/arm64/* Build-Artifacts
-      #       else
-      #         sudo mv "./out/make/simple-to-do-app-x64.dmg" ./Build-Artifacts
-      #         sudo mv "./out/make/simple-to-do-app-arm64.dmg" ./Build-Artifacts
-      #         sudo mv "./out/make/zip/darwin/arm64/*" ./Build-Artifacts
-      #         sudo mv "./out/make/zip/darwin/x64/*" ./Build-Artifacts
-      #       fi
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App Windows x64 Installer
@@ -115,25 +88,3 @@ jobs:
         run: yarn publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Upload binaries to release
-      #   uses: svenstaro/upload-release-action@v2
-      #   with:
-      #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-      #     file: Build-Artifacts/*
-      #     tag: ${{ github.ref }}
-      #     overwrite: true
-      #     file_glob: true
-      # - uses: "marvinpinto/action-automatic-releases@latest"
-      #   with:
-      #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
-      #     prerelease: false
-      #     files: |
-      #           Build-Artifacts/simple-to-do-app-x64.msi
-      #           Build-Artifacts/simple-to-do-app-ia32.msi
-      #           Build-Artifacts/simple-to-do-app-arm64.msi
-      #           Build-Artifacts/simple-to-do-app_1.0.0_amd64.deb
-      #           Build-Artifacts/simple-to-do-app_1.0.0_arm64.deb
-      #           Build-Artifacts/simple-to-do-app-1.0.0-1.x86_64.rpm
-      #           Build-Artifacts/simple-to-do-app-1.0.0-1.arm64.rpm
-      #           Build-Artifacts/Simple To Do App-1.0.0-x64.dmg
-      #           Build-Artifacts/Simple To Do App-1.0.0-arm64.dmg

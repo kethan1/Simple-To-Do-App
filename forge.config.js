@@ -56,12 +56,12 @@ module.exports = {
         {
             "name": "@electron-forge/publisher-github",
             "config": {
-              "authToken": process.env["secrets.GITHUB_TOKEN"],
-              "repository": {
-                "owner": "kethan1",
-                "name": "Simple-To-Do-App",
-                "draft": true
-              }
+                "authToken": process.env.GITHUB_TOKEN,
+                "repository": {
+                    "owner": "kethan1",
+                    "name": "Simple-To-Do-App",
+                    "draft": true
+                }
             }
         }
     ]
