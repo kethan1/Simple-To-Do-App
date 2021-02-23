@@ -1,5 +1,6 @@
 var path = require('path');
 var process = require('process');
+var fs = require('fs');
 
 module.exports = {
     packagerConfig: {
@@ -64,5 +65,58 @@ module.exports = {
                 }
             }
         }
-    ]
+    ],
+    hooks: {
+        postMake: async (forgeConfig, options) => {
+            if (Array.isArray(options)) {
+                for (var i = 0; i < options.length; i++) {
+                    for (var artifact = 0; artifact < options[i]["artifacts"].length; artifact++) {
+                        console.log(options[i]["artifacts"][artifact])
+                        if (options[i]["artifacts"][artifact].includes("deb")) {
+                            if (options[i]["artifacts"][artifact].includes("x64")) {
+                                console.log("x64 deb build completed")
+                                console.log(options[i]["artifacts"][artifact])
+                            } else if (options[i]["artifacts"][artifact].includes("arm64")) {
+                                console.log("arm64 deb build completed")
+                                console.log(options[i]["artifacts"][artifact])
+                            }
+                        } else if (options[i]["artifacts"][artifact].includes("rpm")) {
+                            if (options[i]["artifacts"][artifact].includes("x64")) {
+                                console.log("x64 rpm build completed")
+                                console.log(options[i]["artifacts"][artifact])
+                            } else if (options[i]["artifacts"][artifact].includes("arm64")) {
+                                console.log("arm64 rpm build completed")
+                                console.log(options[i]["artifacts"][artifact])
+                            }
+                        } else if (options[i]["artifacts"][artifact].includes("dmg")) {
+                            var dmgFiles = 0;
+                            fs.readdir(dir, (err, files) => {
+                                console.log(files, files.length)
+                                for (var i = 0; i < files.length; i++) {
+                                    if (files[i].includes(".dmg")) {
+                                        dmgFiles+=1;
+                                    }
+                                }
+                            });  
+                            if (dmgFiles == 1) {
+                                console.log("x64 dmg build completed")
+                                console.log(options[i]["artifacts"][artifact])
+                            } else {
+                                console.log("arm64 dmg build completed")
+                                console.log(options[i]["artifacts"][artifact])
+                            }
+                        } else if (options[i]["artifacts"][artifact].includes("zip")) {
+                            if (options[i]["artifacts"][artifact].includes("x64")) {
+                                console.log("x64 zip build completed")
+                                console.log(options[i]["artifacts"][artifact])
+                            } else if (options[i]["artifacts"][artifact].includes("arm64")) {
+                                console.log("arm64 zip build completed")
+                                console.log(options[i]["artifacts"][artifact])
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
