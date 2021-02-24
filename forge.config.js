@@ -57,6 +57,7 @@ module.exports = {
             if (process.env.CI) {
                 if (Array.isArray(options)) {
                     for (var i = 0; i < options.length; i++) {
+                        console.log(options[i]["arch"])
                         for (var artifact = 0; artifact < options[i]["artifacts"].length; artifact++) {
                             if (options[i]["artifacts"][artifact].includes("deb")) {
                                 if (options[i]["artifacts"][artifact].includes("x64")) {
@@ -84,14 +85,14 @@ module.exports = {
                                 }
                             } else if (options[i]["artifacts"][artifact].includes("dmg")) {
                                 var dmgFiles = 0;
-                                fs.readdir("./out/make", (err, files) => {
+                                fs.readdir("./Build-Artifacts", (err, files) => {
                                     for (var i = 0; i < files.length; i++) {
                                         if (files[i].includes(".dmg")) { 
                                             dmgFiles+=1; 
                                         }
                                     }
                                 });  
-                                if (dmgFiles == 1) {
+                                if (options[i]["arch"] == "x64") {
                                     console.log("MacOS DMG x64 Build Completed")
                                     fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-MacOS-x64.dmg"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
