@@ -47,6 +47,10 @@ jobs:
         shell: bash
         run: yarn install --frozen-lockfile --network-timeout 100000
 
+      - name: Create Artifacts Output Folder
+        shell: bash
+        run: mkdir Build-Artifacts
+
       - name: Make x64, x86. and arm64 for Windows, Linux, and MacOS
         shell: bash
         run: | 
@@ -57,23 +61,18 @@ jobs:
             fi
         env:
           CURRENT_WORKFLOW: "Publish"
+        
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: Build-Artifacts/*
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
 
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App Windows x64 Installer
           path: |
-              out/make/win32/x64/simple-to-do-app.msi
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Simple To Do App Windows x86 Installer
-          path: |
-              out/make/win32/ia32/simple-to-do-app.msi
-      - name: Run Electron-Forge Publish
-        run: |
-            yarn publishToTag
-            yarn publishToTag --arch=arm64
-            if [ "$RUNNER_OS" == "Windows" ]; then
-              yarn publishToTag --arch=ia32
-            fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              Build-Artifacts/*

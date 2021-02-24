@@ -52,19 +52,6 @@ module.exports = {
             }
         }
     ],
-    publishers: [
-        {
-            "name": "@electron-forge/publisher-github",
-            "config": {
-                "authToken": process.env.GITHUB_TOKEN,
-                "repository": {
-                    "owner": "kethan1",
-                    "name": "Simple-To-Do-App",
-                    "draft": true
-                }
-            }
-        }
-    ],
     hooks: {
         postMake: async (forgeConfig, options) => {
             if (process.env.CI) {
@@ -74,28 +61,24 @@ module.exports = {
                             if (options[i]["artifacts"][artifact].includes("deb")) {
                                 if (options[i]["artifacts"][artifact].includes("x64")) {
                                     console.log("Linux Deb x64 Build Completed")
-                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                    fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-Linux-x64.deb"), function(err) {
+                                    fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-Linux-x64.deb"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
                                 } else if (options[i]["artifacts"][artifact].includes("arm64")) {
                                     console.log("Linux Deb arm64 Build Completed")
-                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                    fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-Linux-arm64.deb"), function(err) {
+                                    fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-Linux-arm64.deb"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
                                 }
                             } else if (options[i]["artifacts"][artifact].includes("rpm")) {
                                 if (options[i]["artifacts"][artifact].includes("x64")) {
                                     console.log("Linux Rpm x64 Build Completed")
-                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                    fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-Linux-x64.rpm"), function(err) {
+                                    fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-Linux-x64.rpm"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
                                 } else if (options[i]["artifacts"][artifact].includes("arm64")) {
                                     console.log("Linux Rpm arm64 Build Completed")
-                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                    fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-Linux-arm64.rpm"), function(err) {
+                                    fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-Linux-arm64.rpm"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
                                 }
@@ -110,28 +93,24 @@ module.exports = {
                                 });  
                                 if (dmgFiles == 1) {
                                     console.log("MacOS DMG x64 Build Completed")
-                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                    fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-MacOS-x64.dmg"), function(err) {
+                                    fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-MacOS-x64.dmg"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
                                 } else {
                                     console.log("MacOS DMG arm64 Build Completed")
-                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                    fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-MacOS-arm64.dmg"), function(err) {
+                                    fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-MacOS-arm64.dmg"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
                                 }
                             } else if (options[i]["artifacts"][artifact].includes("zip")) {
                                 if (options[i]["artifacts"][artifact].includes("x64")) {
                                     console.log("MacOS Zip x64 Build Completed")
-                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                    fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-MacOS-x64.zip"), function(err) {
+                                    fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-MacOS-x64.zip"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
                                 } else if (options[i]["artifacts"][artifact].includes("arm64")) {
                                     console.log("MacOS Zip arm64 zip Build Completed")
-                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                    fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-MacOS-arm64.zip"), function(err) {
+                                    fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-MacOS-arm64.zip"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
                                 }
@@ -139,24 +118,21 @@ module.exports = {
                                 if (options[i]["artifacts"][artifact].includes("x64")) {
                                     console.log("Windows MSI x64 Build Completed")
                                     if (process.env.CURRENT_WORKFLOW === "Publish") {
-                                        var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                        fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-Windows-x64.msi"), function(err) {
+                                        fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-Windows-x64.msi"), function(err) {
                                             if (err) console.log('ERROR: ' + err);
                                         });
                                     }
                                 } else if (options[i]["artifacts"][artifact].includes("arm64")) {
                                     console.log("Windows MSI arm64 Build Completed")
                                     if (process.env.CURRENT_WORKFLOW === "Publish") {
-                                        var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                        fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-Windows-arm64.msi"), function(err) {
+                                        fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-Windows-arm64.msi"), function(err) {
                                             if (err) console.log('ERROR: ' + err);
                                         });
                                     }
                                 } else if (options[i]["artifacts"][artifact].includes("ia32")) {
                                     console.log("Windows MSI x86 Build Completed")
                                     if (process.env.CURRENT_WORKFLOW === "Publish") {
-                                        var dirPath = path.dirname(options[i]["artifacts"][artifact]);
-                                        fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-Windows-x86.msi"), function(err) {
+                                        fs.rename(options[i]["artifacts"][artifact], path.join("./Build-Artifacts", "simple-to-do-app-Windows-x86.msi"), function(err) {
                                             if (err) console.log('ERROR: ' + err);
                                         });
                                     }
