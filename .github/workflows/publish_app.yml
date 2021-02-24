@@ -1,4 +1,4 @@
-name: Node Publish App For Windows (x64, x86, arm64), Linux (x64, arm64), MacOS (x64, arm64)
+name: Build & Publish Electron App
 
 on:
   push:
@@ -36,20 +36,15 @@ jobs:
               sudo apt-get install dpkg
               sudo apt-get install fakeroot
               sudo apt-get install rpm
-              sudo apt-get install zip
-              sudo apt-get install unzip
             elif [ "$RUNNER_OS" == "Windows" ]; then
               echo "Installing Windows Dependencies"
               powershell Install-WindowsFeature Net-Framework-Core
               choco install -y wixtoolset
               echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
-            elif [ "$RUNNER_OS" == "macOS" ]; then
-              brew install rename
             fi
 
       - name: Install Yarn Dependencies 
         shell: bash
-
         run: yarn install --frozen-lockfile --network-timeout 100000
 
       - name: Make x64, x86. and arm64 for Windows, Linux, and MacOS
@@ -60,20 +55,9 @@ jobs:
             if [ "$RUNNER_OS" == "Windows" ]; then
               yarn make --arch ia32
             fi
-            # if [ "$RUNNER_OS" == "macOS" ]; then
-            #   echo "Renaming x64 DMG"
-            #   for nam in out/make/*.dmg; do echo $nam && echo mv $nam out/make/simple-to-do-app-x64.dmg && mv $nam out/make/simple-to-do-app-x64.dmg ; done
-            # fi
-            
-            # if [ "$RUNNER_OS" == "macOS" ]; then
-            #   echo "Renaming arm64 DMG"
-            #   for nam in out/make/Simple To Do App-*.dmg; do mv $nam out/make/simple-to-do-app-arm64.dmg ; done
-            # elif [ "$RUNNER_OS" == "Linux" ]; then
-            #   for nam in out/make/simple-to-do-app_*_amd64.deb; do mv $nam out/make/simple-to-do-app_x64.deb  ; done
-            #   for nam in out/make/simple-to-do-app_*_arm64.deb; do mv $nam out/make/simple-to-do-app_arm64.deb ; done
-            #   for nam in out/make/simple-to-do-app-*-1.x86_64.rpm; do mv $nam out/make/simple-to-do-app-x64.rpm ; done
-            #   for nam in out/make/simple-to-do-app-*-1.arm64.rpm; do mv $nam out/make/simple-to-do-app-arm64.rpm ; done  
-            # fi
+        env:
+          CURRENT_WORKFLOW: "Publish"
+
       - uses: actions/upload-artifact@v2
         with:
           name: Simple To Do App Windows x64 Installer

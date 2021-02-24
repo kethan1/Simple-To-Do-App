@@ -1,6 +1,6 @@
-name: Node Build App For Windows (x64, x86, arm64), Linux (x64, arm64), MacOS (x64, arm64)
+name: Build Electron App
 
-on: push
+on: [push, pull_request]
 
 jobs:
   build:
