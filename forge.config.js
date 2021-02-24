@@ -74,11 +74,13 @@ module.exports = {
                             if (options[i]["artifacts"][artifact].includes("deb")) {
                                 if (options[i]["artifacts"][artifact].includes("x64")) {
                                     console.log("Linux Deb x64 Build Completed")
+                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
                                     fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-Linux-x64.deb"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
                                 } else if (options[i]["artifacts"][artifact].includes("arm64")) {
                                     console.log("Linux Deb arm64 Build Completed")
+                                    var dirPath = path.dirname(options[i]["artifacts"][artifact]);
                                     fs.rename(options[i]["artifacts"][artifact], path.join(dirPath, "simple-to-do-app-Linux-arm64.deb"), function(err) {
                                         if (err) console.log('ERROR: ' + err);
                                     });
