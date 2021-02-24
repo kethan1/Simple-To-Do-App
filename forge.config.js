@@ -89,10 +89,7 @@ module.exports = {
                             }
                         } else if (options[i]["artifacts"][artifact].includes("dmg")) {
                             var dmgFiles = 0;
-                            var dir;
-                            var err;
-                            var files;
-                            fs.readdir(dir, (err, files) => {
+                            fs.readdir("./out/make", (err, files) => {
                                 console.log(files, files.length)
                                 for (var i = 0; i < files.length; i++) {
                                     if (files[i].includes(".dmg")) {
