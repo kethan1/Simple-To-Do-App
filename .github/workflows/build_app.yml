@@ -51,3 +51,5 @@ jobs:
             if [ "$RUNNER_OS" == "Windows" ]; then
               yarn make --arch ia32
             fi
+        env:
+          CURRENT_WORKFLOW: "Build"

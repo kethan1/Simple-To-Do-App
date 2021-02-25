@@ -73,6 +73,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: Simple To Do App Windows x64 Installer
           path: |
-              Build-Artifacts/*
+              Build-Artifacts/
