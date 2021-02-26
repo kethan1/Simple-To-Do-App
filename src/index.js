@@ -1,6 +1,9 @@
 const { app, BrowserWindow, Menu } = require('electron');
+var Store = require("electron-store");
 const path = require('path');
 const isDev = false ? (app.isPackaged): true;
+
+Store.initRenderer()
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
