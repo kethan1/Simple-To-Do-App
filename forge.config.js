@@ -50,6 +50,12 @@ module.exports = {
                 "license": "MIT",
                 "icon": path.join(__dirname, "/assets/app_icons/app_icon.png")
             }
+        },
+        {
+            "name": "@electron-forge/maker-snap",
+            "config": {
+              "summary": "Super Simple To Do App"
+            }
         }
     ],
     hooks: {
@@ -59,20 +65,13 @@ module.exports = {
                 var outputFolder = "./Build-Artifacts";
                 if (options[i]["arch"] == "ia32") var currentArch = "x86"
                 else var currentArch = options[i]["arch"]
-                for (var i = 0; i < options.length; i++) {
-                    for (var artifact = 0; artifact < options[i]["artifacts"].length; artifact++) {
-                        if (options[i]["artifacts"][artifact].includes("deb")) {
-                            fs.rename(options[i]["artifacts"][artifact], path.join(outputFolder, `${appName}-Linux-${currentArch}.deb`))
-                        } else if (options[i]["artifacts"][artifact].includes("rpm")) {
-                            fs.rename(options[i]["artifacts"][artifact], path.join(outputFolder, `${appName}-Linux-${currentArch}.rpm`))
-                        } else if (options[i]["artifacts"][artifact].includes("dmg")) {
-                            fs.rename(options[i]["artifacts"][artifact], path.join(outputFolder, `${appName}-MacOS-${currentArch}.dmg`))
-                        } else if (options[i]["artifacts"][artifact].includes("zip")) {
-                            fs.rename(options[i]["artifacts"][artifact], path.join(outputFolder, `${appName}-MacOS-${currentArch}.zip`))
-                        }  else if (options[i]["artifacts"][artifact].includes("msi")) {
-                            if (options[i]["arch"] == "ia32") fs.rename(options[i]["artifacts"][artifact], path.join(outputFolder, `${appName}-Windows-x86.msi`))
-                            else fs.rename(options[i]["artifacts"][artifact], path.join(outputFolder, `${appName}-Windows-${currentArch}.msi`))
-                        }
+                for (let option of options) {
+                    for (let artifact of option) {
+                        if (artifact.includes("deb")) fs.rename(artifact, path.join(outputFolder, `${appName}-Linux-${currentArch}.deb`))
+                        else if (artifact.includes("rpm")) fs.rename(artifact, path.join(outputFolder, `${appName}-Linux-${currentArch}.rpm`))
+                        else if (artifact.includes("dmg")) fs.rename(artifact, path.join(outputFolder, `${appName}-MacOS-${currentArch}.dmg`))
+                        else if (artifact.includes("zip")) fs.rename(artifact, path.join(outputFolder, `${appName}-MacOS-${currentArch}.zip`))
+                        else if (artifact.includes("msi")) fs.rename(artifact, path.join(outputFolder, `${appName}-Windows-${currentArch}.msi`))
                     }
                 }
             }

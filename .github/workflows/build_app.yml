@@ -32,8 +32,8 @@ jobs:
               sudo apt-get install dpkg
               sudo apt-get install fakeroot
               sudo apt-get install rpm
-              sudo apt-get install zip
-              sudo apt-get install unzip
+              sudo apt-get install snapd
+              sudo apt-get install snapcraft
             elif [ "$RUNNER_OS" == "Windows" ]; then
               echo "Installing Windows Dependencies"
               powershell Install-WindowsFeature Net-Framework-Core
@@ -43,7 +43,7 @@ jobs:
       - name: Install Yarn Dependencies 
         shell: bash
         run: yarn install --frozen-lockfile --network-timeout 100000
-      - name: Make x64, x86, and arm64 for Windows, Linux, and MacOS
+      - name: Build App
         shell: bash
         run: | 
             yarn make
