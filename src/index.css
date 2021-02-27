@@ -43,8 +43,18 @@ input {
 }
 .dropdown-content li span,
 .select-wrapper input.select-dropdown {  
-    color: var(--global-color);   
+    color: var(--global-color-invert);   
 }
+/* .select-wrapper option {
+    background: #1A1B1C;
+} */
+input.select-dropdown {
+    background: var(--body-background) !important;
+}
+ul.dropdown-content.select-dropdown li span {
+    background: var(--body-background); 
+}
+
 .change-button {
     color: var(--global-color);
     background-color: var(--global-color);
