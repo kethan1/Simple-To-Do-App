@@ -45,9 +45,6 @@ input {
 .select-wrapper input.select-dropdown {  
     color: var(--global-color-invert);   
 }
-/* .select-wrapper option {
-    background: #1A1B1C;
-} */
 input.select-dropdown {
     background: var(--body-background) !important;
 }
@@ -62,5 +59,3 @@ ul.dropdown-content.select-dropdown li span {
 .div_background_color {
     background-color: var(--global-color3);
 }
-
-

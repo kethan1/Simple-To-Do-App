@@ -62,7 +62,7 @@ waves-light btn-small" name="action">Add</button>
                     var tmp_string = "";
                     if (value.length != 0) {
                         for (var i=0; i < value.length; i++) {
-                            tmp_string+=`<tr><td>●  </span>${value[i]} <a style="cursor: pointer;" 
+                            tmp_string+=`<tr><td>&#9679;&nbsp;</span>${value[i]} <a style="cursor: pointer;" 
 onClick="RemoveItemfromListInterfacer('${key}', '${value[i]}')">❌</a></td></tr>`;
                         }
                     }
