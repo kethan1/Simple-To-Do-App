@@ -59,14 +59,16 @@ module.exports = {
                 var outputFolder = "./Build-Artifacts";
                 for (let option in options) {
                     console.log(option)
-                    if (option["arch"] == "ia32") var currentArch = "x86"
-                    else var currentArch = option["arch"]
-                    for (let artifact of option["artifacts"]) {
-                        if (artifact.includes("deb")) fs.rename(artifact, path.join(outputFolder, `${appName}-Linux-${currentArch}.deb`))
-                        else if (artifact.includes("rpm")) fs.rename(artifact, path.join(outputFolder, `${appName}-Linux-${currentArch}.rpm`))
-                        else if (artifact.includes("dmg")) fs.rename(artifact, path.join(outputFolder, `${appName}-MacOS-${currentArch}.dmg`))
-                        else if (artifact.includes("zip")) fs.rename(artifact, path.join(outputFolder, `${appName}-MacOS-${currentArch}.zip`))
-                        else if (artifact.includes("msi")) fs.rename(artifact, path.join(outputFolder, `${appName}-Windows-${currentArch}.msi`))
+                    if (Array.isArray(option)) {
+                        if (option["arch"] == "ia32") var currentArch = "x86"
+                        else var currentArch = option["arch"]
+                        for (let artifact of option["artifacts"]) {
+                            if (artifact.includes("deb")) fs.rename(artifact, path.join(outputFolder, `${appName}-Linux-${currentArch}.deb`))
+                            else if (artifact.includes("rpm")) fs.rename(artifact, path.join(outputFolder, `${appName}-Linux-${currentArch}.rpm`))
+                            else if (artifact.includes("dmg")) fs.rename(artifact, path.join(outputFolder, `${appName}-MacOS-${currentArch}.dmg`))
+                            else if (artifact.includes("zip")) fs.rename(artifact, path.join(outputFolder, `${appName}-MacOS-${currentArch}.zip`))
+                            else if (artifact.includes("msi")) fs.rename(artifact, path.join(outputFolder, `${appName}-Windows-${currentArch}.msi`))
+                        }
                     }
                 }
             }
