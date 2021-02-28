@@ -57,9 +57,9 @@ module.exports = {
             if (process.env.CI && process.env.CURRENT_WORKFLOW === "Publish") {
                 var appName = "simple-to-do-app";
                 var outputFolder = "./Build-Artifacts";
-                if (options[i]["arch"] == "ia32") var currentArch = "x86"
-                else var currentArch = options[i]["arch"]
                 for (var i = 0; i < options.length; i++) {
+                    if (options[i]["arch"] == "ia32") var currentArch = "x86"
+                    else var currentArch = options[i]["arch"]
                     for (var artifact = 0; artifact < options[i]["artifacts"].length; artifact++) {
                         if (options[i]["artifacts"][artifact].includes("deb")) fs.rename(options[i]["artifacts"][artifact], path.join(outputFolder, `${appName}-Linux-${currentArch}.deb`))
                         else if (options[i]["artifacts"][artifact].includes("rpm")) fs.rename(options[i]["artifacts"][artifact], path.join(outputFolder, `${appName}-Linux-${currentArch}.rpm`))
