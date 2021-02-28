@@ -63,6 +63,7 @@ module.exports = {
             if (process.env.CI && process.env.CURRENT_WORKFLOW === "Publish") {
                 var appName = "simple-to-do-app";
                 var outputFolder = "./Build-Artifacts";
+                console.log(options)
                 if (options["arch"] == "ia32") var currentArch = "x86"
                 else var currentArch = options["arch"]
                 for (let artifact of options["artifacts"]) {
