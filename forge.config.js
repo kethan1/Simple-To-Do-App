@@ -50,17 +50,11 @@ module.exports = {
                 "license": "MIT",
                 "icon": path.join(__dirname, "/assets/app_icons/app_icon.png")
             }
-        },
-        {
-            "name": "@electron-forge/maker-snap",
-            "config": {
-              "summary": "Super Simple To Do App"
-            }
         }
     ],
     hooks: {
         postMake: async (forgeConfig, options) => {
-            if (process.env.CI && process.env.CURRENT_WORKFLOW === "Publish") {
+            if (process.env.CI) {
                 var appName = "simple-to-do-app";
                 var outputFolder = "./Build-Artifacts";
                 console.log(options)
