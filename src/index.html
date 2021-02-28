@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head id="head">
+        <meta charset="UTF-8">
+        <title>To-Do List</title>
+        <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+        <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+        <link rel="stylesheet" href="index.css">
+        <script src="render.js"></script>
+    </head>
+    <body>
+        <h4 style="text-align: center;">To-Do List</h4>
+        <div style="text-align: right; margin-right: 3vw;">
+            <a href="settings.html" style="color: var(--settings-icon-color);"><i class="fas fa-cog fa-lg"></i></a>
+        </div>
+
+        <div style="margin-right: 16%; margin-left: 7%">
+            <a href="addListPage.html">Add New List</a>
+            <div id="to_do_lists" class="content"></div>
+        </div>
+        <script>
+            function RemoveItemfromListInterfacer(x1, x2) {
+                RemoveItemfromList(x1, x2);
+                setToDoLists();
+            }
+            function RemoveListInterfacer(x1) {
+                DeleteList(x1);
+                setToDoLists();
+            }
+            function AddTaskInterfacerP1() {
+                var to_insert_in = document.getElementById(`add_task_input_${event.target.id}`);
+                to_insert_in.innerHTML = `<td>
+                    <div class='input-field'>
+                        <input id='NewInputName_${event.target.id}' type='text' name='NewInputName' required>
+                        <label for='NewInputName_${event.target.id}'>Task Name</label>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button onclick="AddTaskInterfacerP3('${event.target.id}')" class="btn waves-effect 
+waves-light btn-small" name="action">Remove</button>
+                        </div>
+                        <ndiv class="input-field col s6">
+                            <button onclick="AddTaskInterfacerP2('${event.target.id}')" class="btn waves-effect 
+waves-light btn-small" name="action">Add</button>
+                        </div>
+                    </div>
+                </td>`;
+            }
+            function AddTaskInterfacerP2(x1) {
+                AddItemtoList(x1, document.getElementById(`NewInputName_${x1}`).value);
+                setToDoLists();
+            }
+            function AddTaskInterfacerP3(x1) {
+                var to_insert_in = document.getElementById(`add_task_input_${x1}`);
+                to_insert_in.innerHTML = "";
+            }
+            function setToDoLists() {
+                var to_do_lists = document.getElementById("to_do_lists");
+                to_do_lists.innerHTML = "";
+                for (var [key, value] of Object.entries(GetLists())) {
+                    var tmp_string = "";
+                    if (value.length != 0) {
+                        for (var i=0; i < value.length; i++) {
+                            tmp_string+=`<tr><td>&#9679;&nbsp;</span>${value[i]} <a style="cursor: pointer;" 
+onClick="RemoveItemfromListInterfacer('${key}', '${value[i]}')">❌</a></td></tr>`;
+                        }
+                    }
+                    
+                    to_do_lists.innerHTML+=`<div style="display: inline-block; vertical-align: top; padding: 
+1.5vw 2.5vw; margin: 2vw; resize: both; overflow: auto; border-radius: 4px;" class="div_background_color">
+                        <table>
+                            <thead>
+                                <tr style="border: 0px solid black !important;">
+                                    <th><span style="font-size: 1.75vw">${key}</span><a style="cursor: pointer;" 
+onClick="RemoveListInterfacer('${key}')">❌</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${tmp_string}
+                                <tr style="border: 0px solid black !important;" id="add_task_input_${key}"></tr>
+                                <tr style="border: 0px solid black !important;"><td><a id="${key}" onClick="AddTaskInterfacerP1()"></a><span id="${key}" style="cursor: pointer" onClick="AddTaskInterfacerP1()" class="plus_sign_green">➕</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>`
+                }
+            }
+            setToDoLists()
+        </script>
+    </body>
+    <script src="detectAndChangeTheme.js"></script>
+</html>

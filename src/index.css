@@ -1,0 +1,61 @@
+@font-face {
+    font-family: "Comfortaa";
+    src: url(assets/fonts/Comfortaa-Regular.ttf) format("truetype");
+}
+
+.plus_sign_green {
+    color: transparent;  
+    text-shadow: 0 0 0 green;
+}
+
+html {
+    --global-color: white;
+    --global-color-invert: black;
+    --body-background: white;
+    --global-color3: #EEEEEE;
+    --settings-icon-color: #222222;
+}
+
+html[data-theme="dark"] {
+    --global-color: black;
+    --global-color-invert: white;
+    --body-background: #1A1B1C;
+    --global-color3: #121212;
+    --settings-icon-color: #ffffff;
+}
+
+body {
+    color: var(--global-color-invert);
+    background-color: var(--body-background);
+    font-family: Comfortaa;
+}
+
+
+button {
+    color: var(--global-color-invert) !important;
+    background-color: var(--global-color) !important;
+}
+input {
+    color: var(--global-color-invert) !important;
+}
+.select-wrapper .caret {
+    fill: var(--global-color-invert);
+}
+.dropdown-content li span,
+.select-wrapper input.select-dropdown {  
+    color: var(--global-color-invert);   
+}
+input.select-dropdown {
+    background: var(--body-background) !important;
+}
+ul.dropdown-content.select-dropdown li span {
+    background: var(--body-background); 
+}
+
+.change-button {
+    color: var(--global-color);
+    background-color: var(--global-color);
+}
+.div_background_color {
+    background-color: var(--global-color3);
+}

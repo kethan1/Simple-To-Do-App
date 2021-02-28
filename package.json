@@ -1,0 +1,49 @@
+{
+  "name": "simple-to-do-app",
+  "productName": "Simple To Do App",
+  "version": "0.0.2",
+  "description": "This is a Simple To Do App",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kethan1/Simple-To-Do-App.git"
+  },
+  "homepage": "https://github.com/kethan1/Simple-To-Do-App#readme",
+  "url": "https://github.com/owner/project/issues",
+  "email": "kethan@vegunta.com",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "publishToTag": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [],
+  "author": {
+    "name": "Kethan Vegunta",
+    "email": "kethan@vegunta.com"
+  },
+  "config": {
+    "forge": "./forge.config.js"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "7.0.2",
+    "materialize-css": "1.0.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-snap": "^6.0.0-beta.54",
+    "@electron-forge/maker-wix": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "@electron-forge/publisher-github": "^6.0.0-beta.54",
+    "@electron-forge/publisher-snapcraft": "^6.0.0-beta.54",
+    "electron": "11.1.1"
+  }
+}

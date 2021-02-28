@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>To Do App!</title>
+        <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+        <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="index.css">
+        <script src="render.js"></script>
+    </head>
+    <body>
+        <h4 style="text-align: center;">Add List</h4>
+        <div class="container">
+            <a href="index.html" style="text-align: right;">Go Back</a>
+            <div id="darkLightChoose" style="text-align: center; margin: 0 1vw"></div>
+        </div>
+    </body>
+    <script src="detectAndChangeTheme.js"></script>
+    <script>
+        var darkLightChoose = document.getElementById("darkLightChoose");
+        currentTheme = GetTheme();
+        var x = [];
+        if (currentTheme == "system") {
+            x.push("light")
+            x.push("dark")
+        } else if (currentTheme == "light") {
+            x.push("dark")
+            x.push("system")
+        } else if (currentTheme == "dark") {
+            x.push("light")
+            x.push("system")
+        }
+        darkLightChoose.innerHTML = `<br><div class="row"><div class="input-field col s12">
+            <select id="colorThemeSelect" class="white">
+              <option value="1" style="background-color: black" selected>${currentTheme}</option>
+              <option value="2">${x[0]}</option>
+              <option value="3">${x[1]}</option>
+            </select>
+            <label>Color Theme</label>
+        </div></div>`;
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+        var a = document.getElementById('colorThemeSelect');
+        a.addEventListener('change', function() {
+            ChangeTheme(a.options[a.selectedIndex].text);
+        }, false);
+    </script>
+</html>
