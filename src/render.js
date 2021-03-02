@@ -36,10 +36,12 @@ function RemoveItemfromList(listName, item) {
     get_store().set(`Simple-To-Do-App.${listName}`, tmp_array2);
 }
 
-function DeleteList(listName) {
-    get_store().delete(`Simple-To-Do-App.${listName}`)
+function EditItem(listName, item, newItem) {
+    var tmp_array = get_store().get(`Simple-To-Do-App.${listName}`)
+    tmp_array[tmp_array.indexOf(item)] = newItem;
+    get_store().set(`Simple-To-Do-App.${listName}`, tmp_array)
 }
 
-function SaveDivPosition() {
-    var all_divs = document.getElementById("")
+function DeleteList(listName) {
+    get_store().delete(`Simple-To-Do-App.${listName}`)
 }

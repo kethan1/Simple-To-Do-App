@@ -17,9 +17,8 @@ const createWindow = () => {
         height: 600,
         icon: "../assets/app_icons/app_icon.png",
         webPreferences: {
-            enableRemoteModule: true,
             nodeIntegration: true,
-            contextIsolation: false,
+            contextIsolation: false
         },
     });
 
