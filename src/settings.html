@@ -20,6 +20,17 @@
             <div id="darkLightChoose" style="text-align: center; margin: 0 1vw"></div>
             <div style="text-align: center;">
                 <a class="waves-effect waves-light btn no-uppercase" onClick="resetToDoLists()">Reset To-Do List Positions</a>
+                <div>
+                    <p>Turn On/Off To-Do List Resizing</p>
+                    <div class="switch">
+                        <label>
+                            Off
+                            <input id="resizingOn_Off" type="checkbox">
+                            <span class="lever"></span>
+                            On
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
@@ -46,8 +57,10 @@
             </select>
             <label>Color Theme</label>
         </div></div>`;
-    </script>
-    <script>
+
+        if (get_Save_Div_Heights() === undefined || get_Save_Div_Heights()) {
+            document.getElementById("resizingOn_Off").checked = true;
+        }
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems);
@@ -56,5 +69,9 @@
         a.addEventListener('change', function() {
             ChangeTheme(a.options[a.selectedIndex].text);
         }, false);
+
+        document.getElementById("resizingOn_Off").addEventListener('input', function() {
+            set_Save_Div_Heights(document.getElementById("resizingOn_Off").checked)
+        });
     </script>
 </html>

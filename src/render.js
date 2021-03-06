@@ -45,3 +45,11 @@ function EditItem(listName, item, newItem) {
 function DeleteList(listName) {
     get_store().delete(`Simple-To-Do-App.${listName}`)
 }
+
+function get_Save_Div_Heights() {
+    return get_store().get("Save_Div_Heights")
+}
+
+function set_Save_Div_Heights(value) {
+    get_store().set("Save_Div_Heights", value)
+}
