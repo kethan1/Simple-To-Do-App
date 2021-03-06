@@ -15,11 +15,42 @@
 			<a href="settings.html" style="color: var(--settings-icon-color);"><i class="fas fa-cog fa-lg"></i></a>
 		</div>
 
-		<div style="margin-right: 16%; margin-left: 7%">
-			<a href="addListPage.html">Add New List</a>
+		<div style="margin-right: 5%; margin-left: 5%">
+            <a style="cursor: pointer" onClick="AddNewList()" id="add_new_list_a_tag">Add New List</a>
 			<div id="to_do_lists" class="content"></div>
 		</div>
 		<script>
+            function AddNewList(finish_add=false) {
+                var to_do_lists = document.getElementById("to_do_lists")
+                if (finish_add) {
+                    document.getElementById("add_new_list_a_tag").onclick = function() { AddNewList() };
+                    if (document.getElementById("add_new_list_input").value !== "") {
+                        var return_value = AddList(document.getElementById("add_new_list_input").value);
+                        if (return_value == "name_taken") { M.toast({html: 'List Name Already In Use'}) } 
+                        else if (return_value == "success") { location.href="index.html"; }
+                    } else { M.toast({html: "Please Enter a List Name"}); }
+                } else {
+                    document.getElementById("add_new_list_a_tag").onclick = "";
+                    to_do_lists.innerHTML += `
+                        <div id="add_new_list_div" style="display: inline-block; vertical-align: top; padding: 
+                        1.5vw 2.5vw; margin: 2vw; resize: both; overflow: auto; border-radius: 4px;" class="div_background_color">
+                            <div class='input-field'>
+                                <input id="add_new_list_input" type="text" style="font-size: 18px; font-weight: bold;">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <button onclick="cancelAddNewList()" class="btn waves-effect waves-light btn-small">Cancel</button>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <button onclick="AddNewList(finish_add=true)" class="btn waves-effect waves-light btn-small">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                }
+            }
+            function cancelAddNewList(){
+                document.getElementById("add_new_list_div").remove()
+            }
 			function RemoveItemfromListInterfacer(x1, x2) {
 				RemoveItemfromList(x1, x2);
 				setToDoLists();
@@ -38,7 +69,7 @@
 					<div class="row">
 						<div class="input-field col s6">
 							<button onclick="AddTaskInterfacerP3('${event.target.id}')" class="btn waves-effect 
-waves-light btn-small" name="action">Remove</button>
+waves-light btn-small" name="action">Cancel</button>
 						</div>
 						<ndiv class="input-field col s6">
 							<button onclick="AddTaskInterfacerP2('${event.target.id}')" class="btn waves-effect 
@@ -60,13 +91,8 @@ waves-light btn-small" name="action">Add</button>
 				var theElementChild = element.firstElementChild
 				if (save) {
                     var newValue = document.getElementById(elementID).value
-					element.parentElement.innerHTML = `
-						&#9679;&nbsp;
-						<span id="${newValue}">${newValue}</span>
-						<a style="color: var(--global-color-invert)" onClick="EditTask('${newValue}', '${theKey}')"><i class="fas fa-pencil-alt"></i></a>
-						<a style="cursor: pointer;" onClick="RemoveItemfromListInterfacer('${theKey}', '${newValue}')">❌</a>
-                    `
                     EditItem(theKey, oldValue, newValue)
+                    setToDoLists()
 				} else {
 					if (theElementChild === null) {
                         old_elm_val = element.innerHTML
@@ -94,7 +120,7 @@ waves-light btn-small" name="action">Add</button>
 					if (value.length != 0) {
 						for (var i=0; i < value.length; i++) {
 							to_do_items+=`
-								<tr>
+								<tr style="border: 0px solid black !important;">
 									<td>
 										&#9679;&nbsp;
 										<span id="${value[i]}">${value[i]}</span>
@@ -107,11 +133,11 @@ waves-light btn-small" name="action">Add</button>
 					
 					to_do_lists.innerHTML+=`
 						<div style="display: inline-block; vertical-align: top; padding: 
-	1.5vw 2.5vw; margin: 2vw; resize: both; overflow: auto; border-radius: 4px;" class="div_background_color">
+	1.5vw 2.5vw; margin: 2vw; resize: both; overflow: auto; border-radius: 4px; background-color: var(--global-color3);">
 							<table>
 								<thead>
 									<tr style="border: 0px solid black !important;">
-										<th><span style="font-size: 18px">${key}</span><a style="cursor: pointer;" 
+										<th><span style="font-size: 18px">${key}</span><a style="cursor: pointer; font-size: 18px" 
 	onClick="RemoveListInterfacer('${key}')">❌</a></th>
 									</tr>
 								</thead>
@@ -128,4 +154,5 @@ waves-light btn-small" name="action">Add</button>
 		</script>
 	</body>
 	<script src="detectAndChangeTheme.js"></script>
+    <script src="save_div_heights.js"></script>
 </html>

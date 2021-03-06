@@ -1,7 +1,8 @@
 const { app, BrowserWindow, Menu } = require('electron');
-var Store = require("electron-store");
+const windowStateKeeper = require('electron-window-state');
+const Store = require("electron-store");
 const path = require('path');
-const isDev = false ? (app.isPackaged): true;
+const isDev = require('electron-is-dev');
 
 Store.initRenderer()
 
@@ -11,10 +12,18 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 }
 
 const createWindow = () => {
+    // Load the previous state with fallback to defaults
+    let mainWindowState = windowStateKeeper({
+        defaultWidth: 1000,
+        defaultHeight: 800
+    });
+
     // Create the browser window.
     const mainWindow = new BrowserWindow({
-        width: 1000,
-        height: 600,
+        x: mainWindowState.x,
+        y: mainWindowState.y,
+        width: mainWindowState.width,
+        height: mainWindowState.height,
         icon: "../assets/app_icons/app_icon.png",
         webPreferences: {
             nodeIntegration: true,
@@ -23,6 +32,29 @@ const createWindow = () => {
     });
 
     const isMac = process.platform === 'darwin'
+
+    if (isDev) {
+        var ViewSubMenu = [
+            { role: 'reload' },
+            { role: 'toggleDevTools' },
+            { type: 'separator' },
+            { role: 'resetZoom' },
+            { role: 'zoomIn' },
+            { role: 'zoomOut' },
+            { type: 'separator' },
+            { role: 'togglefullscreen' }
+        ];
+    } else {
+        var ViewSubMenu = [
+            { role: 'reload' },
+            { type: 'separator' },
+            { role: 'resetZoom' },
+            { role: 'zoomIn' },
+            { role: 'zoomOut' },
+            { type: 'separator' },
+            { role: 'togglefullscreen' }
+        ];
+    }
 
     const template = [
         // { role: 'appMenu' }
@@ -79,16 +111,7 @@ const createWindow = () => {
         // { role: 'viewMenu' }
         {
             label: 'View',
-            submenu: [
-                { role: 'reload' },
-                isDev ? { role: 'toggleDevTools' }: null,
-                { type: 'separator' },
-                { role: 'resetZoom' },
-                { role: 'zoomIn' },
-                { role: 'zoomOut' },
-                { type: 'separator' },
-                { role: 'togglefullscreen' }
-            ]
+            submenu: ViewSubMenu
         },
         // { role: 'windowMenu' }
         {
@@ -107,10 +130,10 @@ const createWindow = () => {
         },
     ]
 
-
-
     const menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
+
+    mainWindowState.manage(mainWindow);
 
     // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, 'index.html'));
@@ -128,17 +151,17 @@ app.on('ready', createWindow);
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
 
 app.on('activate', () => {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
+    // On OS X it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+    }
 });
 
 // In this file you can include the rest of your app's specific main process

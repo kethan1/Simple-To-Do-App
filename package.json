@@ -1,7 +1,7 @@
 {
   "name": "simple-to-do-app",
   "productName": "Simple To Do App",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This is a Simple To Do App",
   "repository": {
     "type": "git",
@@ -30,8 +30,10 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
+    "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "7.0.2",
+    "electron-window-state": "^5.0.3",
     "materialize-css": "1.0.0"
   },
   "devDependencies": {
@@ -41,7 +43,6 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-wix": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "@electron-forge/publisher-github": "^6.0.0-beta.54",
     "electron": "11.1.1"
   }
 }

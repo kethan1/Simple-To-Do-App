@@ -55,7 +55,6 @@ module.exports = {
     hooks: {
         postMake: async (forgeConfig, options) => {
             if (process.env.CI && process.env.CURRENT_WORKFLOW === "Publish") {
-                console.log(options)
                 var appName = "simple-to-do-app";
                 var outputFolder = "./Build-Artifacts";
                 for (var i = 0; i < options.length; i++) {

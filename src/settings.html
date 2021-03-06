@@ -7,12 +7,20 @@
         <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
         <link rel="stylesheet" href="index.css">
         <script src="render.js"></script>
+        <script>
+            function resetToDoLists() {
+                window.localStorage.clear()
+            };
+        </script>
     </head>
     <body>
-        <h4 style="text-align: center;">Add List</h4>
-        <div class="container">
+        <h4 style="text-align: center;">Settings</h4>
+        <div style="margin-right: 5%; margin-left: 5%">
             <a href="index.html" style="text-align: right;">Go Back</a>
             <div id="darkLightChoose" style="text-align: center; margin: 0 1vw"></div>
+            <div style="text-align: center;">
+                <a class="waves-effect waves-light btn no-uppercase" onClick="resetToDoLists()">Reset To-Do List Positions</a>
+            </div>
         </div>
     </body>
     <script src="detectAndChangeTheme.js"></script>

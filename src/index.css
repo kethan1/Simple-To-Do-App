@@ -11,11 +11,15 @@
     text-shadow: 0 0 0 green;
 }
 
+input[type="text"] {
+    font-family: "Comfortaa"
+}
+
 html {
     --global-color: white;
     --global-color-invert: black;
     --body-background: white;
-    --global-color3: #EEEEEE;
+    --global-color3: #f7f7f7;
     --settings-icon-color: #222222;
 }
 
@@ -61,4 +65,17 @@ ul.dropdown-content.select-dropdown li span {
 }
 .div_background_color {
     background-color: var(--global-color3);
+}
+
+.no-uppercase {
+    text-transform: none;
+}
+
+.btn {
+    background-color: var(--global-color);
+    color: var(--global-color-invert);
+}
+
+.btn:hover {
+    background-color: var(--global-color);
 }
