@@ -22,6 +22,8 @@ yarn
 
 Commands documented here: https://www.electronforge.io/cli#commands
 
+Pull requests and issues are welcome, and appreciated!
+
 
    [1]: https://www.electronforge.io/
    [2]: https://www.electronjs.org/
