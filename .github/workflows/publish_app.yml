@@ -58,9 +58,6 @@ jobs:
         run: | 
             yarn make
             yarn make --arch arm64
-            if [ "$RUNNER_OS" == "Windows" ]; then
-              yarn make --arch ia32
-            fi
         env:
           CURRENT_WORKFLOW: "Publish"
         
