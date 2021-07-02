@@ -21,7 +21,6 @@
         </div>
         <script>
             function AddNewList(finish_add=false) {
-                var to_do_lists = document.getElementById("to_do_lists")
                 if (finish_add) {
                     document.getElementById("add_new_list_a_tag").onclick = AddNewList;
                     if (document.getElementById("add_new_list_input").value !== "") {
@@ -31,7 +30,7 @@
                     } else { M.toast({html: "Please Enter a List Name"}); }
                 } else {
                     document.getElementById("add_new_list_a_tag").onclick = "";
-                    to_do_lists.innerHTML += `
+                    document.getElementById("to_do_lists").innerHTML += `
                         <div id="add_new_list_div" style="display: inline-block; vertical-align: top; padding: 
                         1.5vw 2.5vw; margin: 2vw; resize: both; overflow: auto; border-radius: 4px;" class="div_background_color">
                             <div class='input-field'>
@@ -48,9 +47,7 @@
                         </div>`;
                 }
             }
-            function cancelAddNewList() {
-                document.getElementById("add_new_list_div").remove()
-            }
+            function cancelAddNewList() { document.getElementById("add_new_list_div").remove() }
             function RemoveItemfromListInterfacer(x1, x2) {
                 RemoveItemfromList(x1, x2);
                 setToDoLists();
@@ -60,8 +57,7 @@
                 setToDoLists();
             }
             function AddTaskInterfacerP1() {
-                var to_insert_in = document.getElementById(`add_task_input_${event.target.id}`);
-                to_insert_in.innerHTML = `<td>
+                document.getElementById(`add_task_input_${event.target.id}`).innerHTML = `<td>
                     <div class='input-field'>
                         <input id='NewInputName_${event.target.id}' type='text' name='NewInputName' required>
                         <label for='NewInputName_${event.target.id}'>Task Name</label>

@@ -8,9 +8,7 @@
         <link rel="stylesheet" href="index.css">
         <script src="render.js"></script>
         <script>
-            function resetToDoLists() {
-                window.localStorage.clear()
-            };
+            function resetToDoLists() { window.localStorage.clear() };
         </script>
     </head>
     <body>
@@ -36,38 +34,27 @@
     </body>
     <script src="detectAndChangeTheme.js"></script>
     <script>
-        var darkLightChoose = document.getElementById("darkLightChoose");
         currentTheme = GetTheme();
-        var x = [];
-        if (currentTheme == "system") {
-            x.push("light")
-            x.push("dark")
-        } else if (currentTheme == "light") {
-            x.push("dark")
-            x.push("system")
-        } else if (currentTheme == "dark") {
-            x.push("light")
-            x.push("system")
-        }
-        darkLightChoose.innerHTML = `<br><div class="row"><div class="input-field col s12">
+        var change_color_theme = [];
+        if (currentTheme == "system") change_color_theme.push("light", "dark")
+        else if (currentTheme == "light") change_color_theme.push("dark", "system")
+        else if (currentTheme == "dark") change_color_theme.push("light", "system")
+        document.getElementById("darkLightChoose").innerHTML = `<br><div class="row"><div class="input-field col s12">
             <select id="colorThemeSelect" class="white">
               <option value="1" style="background-color: black" selected>${currentTheme}</option>
-              <option value="2">${x[0]}</option>
-              <option value="3">${x[1]}</option>
+              <option value="2">${change_color_theme[0]}</option>
+              <option value="3">${change_color_theme[1]}</option>
             </select>
             <label>Color Theme</label>
         </div></div>`;
 
-        if (get_Save_Div_Heights() === undefined || get_Save_Div_Heights()) {
-            document.getElementById("resizingOn_Off").checked = true;
-        }
+        if (get_Save_Div_Heights() === undefined || get_Save_Div_Heights()) document.getElementById("resizingOn_Off").checked = true;
         document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('select');
-            var instances = M.FormSelect.init(elems);
+            var instances = M.FormSelect.init(document.querySelectorAll('select'));
         });
-        var a = document.getElementById('colorThemeSelect');
-        a.addEventListener('change', function() {
-            ChangeTheme(a.options[a.selectedIndex].text);
+        var color_theme_select = document.getElementById('colorThemeSelect');
+        color_theme_select.addEventListener('change', function() {
+            ChangeTheme(color_theme_select.options[color_theme_select.selectedIndex].text);
         }, false);
 
         document.getElementById("resizingOn_Off").addEventListener('input', function() {
